@@ -1,0 +1,38 @@
+<h1>This is Sign up Screen.</h1>
+
+<div class='row'>
+    <div class='col-md-6 col-sm-12 '>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>Please provide your information... </div>
+            <div class='panel-body'>
+                <form>
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" id="firstname" ng-model='signupCtrl.userModelData.FirstName' placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" id="lastname" ng-model='signupCtrl.userModelData.LastName' placeholder="Last Name">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="emailid">Email address</label>
+                        <input type="email" class="form-control" email-status='Email address already exists.Please enter some other Email address.' id="emailid" ng-model='signupCtrl.userModelData.EmailId' placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" ng-model='signupCtrl.userModelData.Password' placeholder="Password">
+                    </div>
+                   <!-- <div class="form-group">
+                        <label for="emailid">Email address</label>
+                        <input type="email" class="form-control" id="emailid" ng-model='emailid' placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" id="password" ng-model='password' placeholder="Password">
+                    </div>-->
+                    <button type="submit" class="btn btn-info" ng-click='signupCtrl.RegisterUser()'>Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

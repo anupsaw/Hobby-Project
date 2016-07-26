@@ -1,0 +1,12 @@
+# ignore a single file
+
+
+# ignore an entire directory
+/node_modules/
+/client/bower_components/
+
+# ignore a file type
+#*.json
+
+# add an exception (using !) to the preceding rule to track a specific file
+!package.json

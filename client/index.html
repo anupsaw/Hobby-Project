@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=2, maximum-scale=2,user-scalable=yes">
+    <meta name="author" content="Anup Saw">
+    <!-- <meta http-equiv="refresh" content="10"> -->
+    <!--for refresh-->
+    <title>movie app</title>
+</head>
+<link href="bower_components\bootstrap\dist\css\bootstrap.css" rel="stylesheet" />
+<link href="bower_components\font-awesome\css\font-awesome.min.css" rel="stylesheet" />
+<!--<link href="css\app.main.css" rel="stylesheet" />-->
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<!--
+Naming convention 
+
+Element ID: should Camel Case, example id="carBody" 
+CSS Class: should in small letter separated with hyphen, example class='car-body' 
+-->
+
+<body id="carBody" class='car-body'>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand" ui-sref='home'>MovieApp</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href='#' ui-sref='user.login'><i class="fa fa-user" aria-hidden="true">&nbsp; Log in</i></a></li>
+                    <li><a><i class="fa" aria-hidden="true">or</i></a></li>
+                    <li><a href='#' ui-sref='user.signup'><i class="fa fa-user" aria-hidden="true">&nbsp; Sign up</i></a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    </header>
+
+    <div id='mainContent' class='container'>
+
+        <form id='mainForm' name='mainForm'>
+            <div>
+                <ui-view></ui-view>
+            </div>
+
+        </form>
+    </div>
+    <footer id='mainFooter'>
+
+
+    </footer>
+
+
+
+
+
+
+
+
+    <!-- bower:js -->
+    <!--<script src="client\bower_components\requirejs\require.js"></script>-->
+    <script src="/bower_components\jquery\dist\jquery.js"></script>
+    <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
+    <script src="bower_components\angular\angular.js"></script>
+    <script src="bower_components\angular-ui-router\release\angular-ui-router.js"></script>
+    <!-- endbower -->
+
+   
+
+
+    <!--main app js file-->
+    <script src="index.js"></script>
+
+     <!--Custome Services files-->
+     <script src="app\services\dataService\dataService.js"></script>
+     <script src="app\directives\emailStatus.js"></script>
+
+     
+    <script src="app\partials\home\homeRoute.js"></script>
+    <script src="app\partials\home\homeCtrl.js"></script>
+
+    <script src="app\partials\user\userRoute.js"></script>
+    <script src="app\partials\user\userCtrl.js"></script>
+    <script src="app\partials\user\login\loginCtrl.js"></script>
+    <script src="app\partials\user\signup\signupCtrl.js"></script>
+
+
+
+
+    <!--<script  src="app\partials\carCtrl.js"></script>-->
+
+
+
+    <!--Custome Directive files-->
+
+    
+    <!--Custome Service Provider files-->
+    <!--Custome filter files-->
+    <!--Custome Directive files-->
+    <!--Custome Controller files-->
+    <!--<script  src="js\controllers\carCtrl.js"></script>-->
+    <!--<script src="build\app.jsmin-78a2822d4eb277a501c156db56065854.js"></script>-->
+
+
+
+
+</body>
+
+</html>
