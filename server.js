@@ -7,8 +7,6 @@ mongoose.connect('mongodb://127.0.0.1/test');
 global.requireFile = function(name){
 	return require(__dirname + '/server/' + name);
 }
-
-
 var app = express();
 
 
