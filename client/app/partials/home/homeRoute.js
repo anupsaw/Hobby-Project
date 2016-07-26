@@ -32,5 +32,4 @@
 
     angular.module('MovieApp')
         .config(['$stateProvider', '$urlRouterProvider', homeRouting]);
-
 })();

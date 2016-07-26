@@ -1,4 +1,4 @@
-
+'use strict';
 
 // This will work as routing for this application
 var express = require('express');
@@ -18,8 +18,7 @@ router.route('/')
     .get(function (req, res) {
         console.log(req);
         res.send('user.get');
-    })
-
+    });
 
 router.route('/login')
     .post(login.authenticate);

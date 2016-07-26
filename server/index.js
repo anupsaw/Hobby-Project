@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = main;
 
@@ -11,8 +11,7 @@ function main(app,db) {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(router);
-
-
+    console.log('anup');
     return app;
 
 }

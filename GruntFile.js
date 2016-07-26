@@ -6,20 +6,17 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
     var clientConfig = {
-
-        jsFile: ['./client/app/**/*.js', './client/app/index.js'],
+        jsAllFile: ['./client/app/**/*.js', './client/app/index.js'],
+        jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
         lessFile: ['./client/app/**/*.less', './client/app/index.less']
     }
 
 
     var serverConfig = {
-
         jsFile: ['./server/**/*.js', './server/index.js']
-
     }
 
     var gruntConfig = {};
-    console.log(_.concat(clientConfig.jsFile, serverConfig.jsFile))
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -29,19 +26,94 @@ module.exports = function (grunt) {
         },
 
 
+        // Watches files for changes and runs tasks based on the changed files
+        watch: {
+            bower: {
+                files: ['bower.json'],
+                tasks: ['wiredep'],
+                options: {
+                    livereload: true
+                }
+            },
+            jsClient: {
+                files: clientConfig.jsAllFile,
+                tasks: ['jshint:client'],
+                options: {
+                    livereload: true
+                }
+            },
+             jsServer: {
+                files: serverConfig.jsFile,
+                tasks: ['jshint:server','express:dev'],
+                options: {
+                    livereload: true
+                }
+            },
+            less: {
+                files: clientConfig.lessFile,
+                tasks: ['less'],
+                options: {
+                    livereload: true
+                }
+            },
+            gruntfile: {
+                files: ['Gruntfile.js'],
+                options: {
+                    livereload: true
+                }
+            },
+            express: {
+                files: serverConfig.jsFile,
+                tasks: ['express:dev'],
+                options: {
+                    spawn: false
+                }
+            }
+        },
+        express: {
+            options: {
+                // Override defaults here
+                port: 3000
+            },
+            dev: {
+                options: {
+                    script: 'server.js'
+                }
+            }
+        },
+
+        open: {
+            dev: {
+                path: 'http://localhost:3000/'
+            }
+        },
+        // Automatically inject Bower components into the app
+        wiredep: {
+            app: {
+                src: ['client/index.html'],
+                ignorePath: /\.\.\//
+            },
+            less: {
+                src: ['client/build/{,*/}*.{scss,sass,less}'],
+                ignorePath: /(\.\.\/){1,2}bower_components\//
+            }
+        },
         //jshint for checking code 
         jshint: {
             client: {
                 options: {
-                    jshintrc: '.jshintrc',
+                    jshintrc: 'client.jshintrc',
+                    strict: true,
                     reporter: require('jshint-stylish')
                 },
-                src: clientConfig.jsFile
+                src: clientConfig.jsAllFile
             },
             server: {
                 options: {
-                    jshintrc: '.jshintrc',
+                    jshintrc: 'server.jshintrc',
+                    strict: false,
                     reporter: require('jshint-stylish')
+
                 },
                 src: serverConfig.jsFile
             }
@@ -55,22 +127,6 @@ module.exports = function (grunt) {
                 files: {
                     'client/build/app.css': 'client/app/**/*.less'
                 }
-            },
-            production: {
-                options: {
-                    paths: ['assets/css'],
-                    // plugins: [
-                    //     new (require('less-plugin-autoprefix'))({ browsers: ["last 2 versions"] }),
-                    //     new (require('less-plugin-clean-css'))(cleanCssOptions)
-                    // ],
-                    modifyVars: {
-                        //imgPath: '"http://mycdn.com/path/to/images"',
-                        bgColor: 'red'
-                    }
-                },
-                files: {
-                    'path/to/result.css': 'path/to/source.less'
-                }
             }
         }
 
@@ -79,7 +135,7 @@ module.exports = function (grunt) {
 
 
 
-    grunt.registerTask('default', ['less:development']);
+    grunt.registerTask('default', ['jshint','less', 'wiredep', 'express', 'open', 'watch']);
     grunt.registerTask('server', ['jshint:server']);
     grunt.registerTask('client', ['jshint:client']);
     //grunt.registerTask('server', ['jshint']);

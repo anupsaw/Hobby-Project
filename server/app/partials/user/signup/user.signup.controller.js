@@ -8,7 +8,7 @@ module.exports = {
 
     register: register,
     checkEmail: checkEmail
-}
+};
 
 
 function register(req, res) {
@@ -31,20 +31,19 @@ function register(req, res) {
 }
 
 function checkEmail(req, res) {
-
     userDataModel.findOne({ 'EmailId': req.body.EmailId }, function (err, foundEmail) {
         errHandler.checkForError(res, err, moduleName);
-        foundEmail ? res.send(false) : res.send(true);
-
+        var returnObj = foundEmail ? false : true;
+        res.send(returnObj);
     });
 
 }
 
-function checkForError(res, err) {
-    if (err) errHandler.handleError(res, 500, errHandler.bindErrorObject(err, ModuleName));
-}
+// function checkForError(res, err) {
+//     if (err) errHandler.handleError(res, 500, errHandler.bindErrorObject(err, moduleName));
+// }
 
-function bindAndSendErrResponse(res, code, msg) {
-    var errObj = errorHandler.bindCustomErrorObject(code, msg, ModuleName);
-    errorHandler.handleError(res, 400, errObj);
-}
+// function bindAndSendErrResponse(res, code, msg) {
+//     var errObj = errorHandler.bindCustomErrorObject(code, msg, moduleName);
+//     errorHandler.handleError(res, 400, errObj);
+// }

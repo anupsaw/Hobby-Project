@@ -1,16 +1,18 @@
 'user strict';
 
 
-module.exports = {
+
+var obj = {
     handleError: handleError,
     checkForError: checkForError,
     bindAndSendErrResponse: bindAndSendErrResponse
-}
+};
+
+module.exports = obj;
 
 
 function handleError(resObj, statusCode, errorObj) {
-    console.log(errorObj);
-    resObj.status(statusCode).send(errorObj)
+    resObj.status(statusCode).send(errorObj);
 
 }
 
@@ -21,7 +23,7 @@ function bindErrorObject(err, modulename) {
 }
 
 function bindCustomErrorObject(code, errMsg, modulename) {
-    return new ErrorObject({ code: code, errMsg: errMsg, modulename: modulename })
+    return new ErrorObject({ code: code, errMsg: errMsg, modulename: modulename });
 }
 
 function ErrorObject(err) {

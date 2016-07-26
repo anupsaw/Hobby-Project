@@ -1,3 +1,4 @@
+'use strict';
 
 module.exports = appRouter;
 var express = require('express')();
@@ -7,10 +8,8 @@ var user = requireFile('app/partials/user/user.route.js');
 var home = requireFile('app/partials/home/home.route.js');
 
 function appRouter() {
-
     express.use('/home', home);
     express.use('/user', user);
-
     return express;
 
 }
