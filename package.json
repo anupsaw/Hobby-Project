@@ -23,6 +23,7 @@
     "grunt-debug-task": "^0.1.8",
     "grunt-express-server": "^0.5.3",
     "grunt-include-source": "^1.0.0",
+    "grunt-injector": "^1.0.1",
     "grunt-jsbeautifier": "^0.2.10",
     "grunt-nodemon": "^0.4.1",
     "grunt-open": "^0.2.3",

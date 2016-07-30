@@ -4,17 +4,17 @@ module.exports = function (grunt) {
 
     //Laod all the using auto gload-grunt-tasks no need to add grunt.loadNpmTask('') 
     require('load-grunt-tasks')(grunt);
-
     var clientConfig = {
-        jsAllFile: ['./client/app/**/*.js', './client/app/index.js'],
+        jsAllFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js'],
         jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
-        lessFile: ['./client/app/**/*.less', './client/app/index.less']
+        lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less']
     }
 
 
     var serverConfig = {
         jsFile: ['./server/**/*.js', './server/index.js']
     }
+
 
     var gruntConfig = {};
     grunt.initConfig({
@@ -25,12 +25,22 @@ module.exports = function (grunt) {
             js: 'client/build/'
         },
 
+        clientConfig: {
+            jsAllFile: ['client/index.js', 'client/app/*.js', 'client/app/**/*.js'],
+            jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
+            lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less']
+        },
+
+
+        serverConfig: {
+            jsFile: ['./server/**/*.js', './server/index.js']
+        },
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
                 files: ['bower.json'],
-                tasks: ['wiredep'],
+                tasks: ['wiredep', 'injector'],
                 options: {
                     livereload: true
                 }
@@ -42,9 +52,9 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-             jsServer: {
+            jsServer: {
                 files: serverConfig.jsFile,
-                tasks: ['jshint:server','express:dev'],
+                tasks: ['jshint:server', 'express:dev'],
                 options: {
                     livereload: true
                 }
@@ -89,12 +99,17 @@ module.exports = function (grunt) {
         },
         // Automatically inject Bower components into the app
         wiredep: {
+
             app: {
                 src: ['client/index.html'],
                 ignorePath: /\.\.\//
             },
+            css: {
+                src: ['client/index.html'],
+                ignorePath: /\.\.\//
+            },
             less: {
-                src: ['client/build/{,*/}*.{scss,sass,less}'],
+                src: ['client/index.less'],
                 ignorePath: /(\.\.\/){1,2}bower_components\//
             }
         },
@@ -119,13 +134,49 @@ module.exports = function (grunt) {
             }
         },
 
-        less: {
-            development: {
-                options: {
-                    paths: ['client/build/css']
-                },
+        // less: {
+        //     development: {
+        //         options: {
+        //             paths: ['client/build/css']
+        //         },
+        //         files: {
+        //             'client/build/app.css': clientConfig.lessFile
+        //         }
+        //     }
+        // },
+
+          less: {
+            vendor: {
                 files: {
-                    'client/build/app.css': 'client/app/**/*.less'
+                    'client/build/vendor.css': 'client/index.less'
+                }
+            },
+            app:{
+                files: {
+                    'client/build/app.css': clientConfig.lessFile
+                }
+            }
+        },
+
+        injector: {
+            options: {
+                relative: true
+            },
+            local_dependencies: {
+                files: {
+                    'client/index.html': clientConfig.jsAllFile,
+                }
+            }
+        },
+
+        includeSource: {
+            options: {
+                basePath: 'client',
+                baseUrl: '',
+            },
+            myTarget: {
+                files: {
+                    'client/build/index.html': 'client/index.html'
                 }
             }
         }
@@ -135,9 +186,11 @@ module.exports = function (grunt) {
 
 
 
-    grunt.registerTask('default', ['jshint','less', 'wiredep', 'express', 'open', 'watch']);
+    grunt.registerTask('default', ['clean','jshint', 'wiredep', 'injector', 'less', 'express', 'open', 'watch']);
     grunt.registerTask('server', ['jshint:server']);
     grunt.registerTask('client', ['jshint:client']);
+    grunt.registerTask('include', ['clean','includeSource']);
+
     //grunt.registerTask('server', ['jshint']);
 
 

@@ -1,18 +1,18 @@
 <h1>This is login Screen.</h1>
 
-<div class='row'>
-    <div class='col-md-6 col-sm-12 '>
+<!--<div class='row'>
+    <div class='col s6'>
         <div class='panel panel-default'>
           <div class='panel-heading'>Prlease login... </div>
             <div class='panel-body'>
                 <form>
-                   <div class="form-group has-feedback">
+                   <div class="input-field">
                         <label for="emailid">Email address</label>
-                        <input type="email" class="form-control" id="emailid" ng-model='loginCtrl.userModelData.EmailId' placeholder="Email">
+                        <input type="email" class="validate" id="emailid" required ng-model='loginCtrl.userModelData.EmailId'>
                     </div>
-                    <div class="form-group">
+                    <div class="input-field">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" ng-model='loginCtrl.userModelData.Password' placeholder="Password">
+                        <input type="password" class="validate" id="password" required ng-model='loginCtrl.userModelData.Password' >
                     </div>
                     <div class="checkbox">
                         <label>
@@ -24,4 +24,32 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content black-text">
+                <span class="card-title">Log In</span>
+
+                <form>
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="email" class="validate" id="emailid" required ng-model='loginCtrl.userModelData.EmailId'>
+                            <label for="emailid">Email address</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="password" class="validate" id="password" required ng-model='loginCtrl.userModelData.Password'>
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <button type="submit" class="btn as-btn-red" ng-click='loginCtrl.Authenticate();'>Submit</button>
+
+                    </div>
+            </div>
+        </div>
+    </div>

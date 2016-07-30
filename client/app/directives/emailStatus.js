@@ -8,13 +8,14 @@
                 restrict: 'A',
                 controller: 'emailStatusCtrl',
                 controllerAs: 'emailStatusCtrl',
-
+                priority: 0,
                 link: function (scope, element, attr, ctrl) {
 
                     element.on('blur', function () {
                         var at = attr;
                         var val = element.val();
                         ctrl.checkEmailStatus(val).then(function (res) {
+                            var scop = scope;
                             var eleParent = element.parent();
                             if (res === true) {
 
