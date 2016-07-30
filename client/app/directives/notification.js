@@ -43,3 +43,20 @@
 //         }]);
 
 // })();
+
+
+(function () {
+    'use strict';
+
+    angular.module('MovieApp')
+        .directive('form', function ($parse) {
+            return {
+
+                restrict: 'E',
+                link: function (scope, element, attr, ctrl) {
+                    element.attr('novalidate', '');
+                }
+            };
+        });
+
+})();

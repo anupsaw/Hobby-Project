@@ -1,5 +1,5 @@
 (function () {
-'use strict';
+    'use strict';
 
     function userRuoting($stateProvider, $urlRouterProvider) {
 
@@ -23,7 +23,18 @@
                 templateUrl: 'app/partials/user/signup/signup.html',
                 controller: 'signupCtrl',
                 controllerAs: 'signupCtrl'
-
+            })
+            .state('user.resetpassword', {
+                url: '/resetpassword',
+                templateUrl: 'app/partials/user/resetpassword/resetpassword.html',
+                controller: 'resetpasswordCtrl',
+                controllerAs: 'resetpasswordCtrl'
+            })
+            .state('user.securityquestions', {
+                url: '/securityquestions',
+                templateUrl: 'app/partials/user/securityquestions/securityquestions.html',
+                controller: 'securityquestionsCtrl',
+                controllerAs: 'securityquestionsCtrl'
             });
     }
 

@@ -2281,6 +2281,13 @@ footer.page-footer {
 .waves-effect.waves-black .waves-ripple {
   background-color: black;
 }
+.card .card-content .card-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+
 
 
 

@@ -1,36 +1,41 @@
 <h1>This is Sign up Screen.</h1>
 
-<div class='row'>
-    <div class='col-md-6 col-sm-12 '>
-        <div class='panel panel-default'>
-            <div class='panel-heading'>Please provide your information... </div>
-            <div class='panel-body'>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content black-text">
+                <div class="card-title"><span>SIGN UP</span></div>
                 <form>
-                    <div class="form-group">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" id="firstname" ng-model='signupCtrl.userModelData.FirstName' placeholder="First Name">
+
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="text" class="validate" id="firstname" ng-model='signupCtrl.userModelData.FirstName' placeholder="First Name">
+                            <label for="firstname">First Name</label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname" ng-model='signupCtrl.userModelData.LastName' placeholder="Last Name">
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="text" class="form-control" id="lastname" ng-model='signupCtrl.userModelData.LastName' placeholder="Last Name">
+                            <label for="lastname">Last Name</label>
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        <label for="emailid">Email address</label>
-                        <input type="email" class="form-control" required email-status='Email address already exists.Please enter some other Email address.' id="emailid" ng-model='signupCtrl.userModelData.EmailId' placeholder="Email">
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="email" class='validate' id="emailid" required ng-model='loginCtrl.userModelData.EmailId'>
+                            <label for="emailid">Email address</label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" required id="password" ng-model='signupCtrl.userModelData.Password' placeholder="Password">
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="password" class='validate' id="password" required ng-model='loginCtrl.userModelData.Password'>
+                            <label for="password">Password</label>
+                        </div>
                     </div>
-                   <!-- <div class="form-group">
-                        <label for="emailid">Email address</label>
-                        <input type="email" class="form-control" id="emailid" ng-model='emailid' placeholder="Email">
+
+                    <div class="row">
+                        <button type="submit" class="btn as-btn-red" ng-click='signupCtrl.RegisterUser();'>SIGN UP</button>
+                        <span>Already have account?<a href='#' ui-sref='user.login'> CLICK HERE</a></span>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="text" class="form-control" id="password" ng-model='password' placeholder="Password">
-                    </div>-->
-                    <button type="submit" class="btn btn-info" ng-click='signupCtrl.RegisterUser()'>Submit</button>
                 </form>
             </div>
         </div>
