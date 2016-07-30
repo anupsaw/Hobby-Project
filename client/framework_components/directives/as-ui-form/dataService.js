@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('MovieApp')
+    angular.module('asuiform')
         .service('dataService', ['$http', '$q', '$location', function ($http, $q, $location) {
 
             var DataService;

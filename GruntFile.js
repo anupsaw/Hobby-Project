@@ -6,8 +6,10 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     var clientConfig = {
         jsAllFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js'],
+        jsFramework: ['./client/framework_components/*.js', './client/framework_components/**/*.js'],
         jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
-        lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less']
+        lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less'],
+         htmlFiles:['./client/index.html', './client/app/*.html', './client/app/**/*.html']
     }
 
 
@@ -29,6 +31,7 @@ module.exports = function (grunt) {
             jsAllFile: ['client/index.js', 'client/app/*.js', 'client/app/**/*.js'],
             jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
             lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less']
+           
         },
 
 
@@ -45,8 +48,14 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
+            html:{
+                files: clientConfig.htmlFiles, 
+                options: {
+                    livereload: true
+                }
+            },
             jsClient: {
-                files: clientConfig.jsAllFile,
+                files: _.concat(clientConfig.jsAllFile, clientConfig.jsFramework),
                 tasks: ['jshint:client'],
                 options: {
                     livereload: true
@@ -83,7 +92,9 @@ module.exports = function (grunt) {
         express: {
             options: {
                 // Override defaults here
-                port: 3000
+                port: 3000,
+                debug: true,
+                breakOnFirstLine: true,
             },
             dev: {
                 options: {
@@ -145,13 +156,13 @@ module.exports = function (grunt) {
         //     }
         // },
 
-          less: {
+        less: {
             vendor: {
                 files: {
                     'client/build/vendor.css': 'client/index.less'
                 }
             },
-            app:{
+            app: {
                 files: {
                     'client/build/app.css': clientConfig.lessFile
                 }
@@ -163,8 +174,11 @@ module.exports = function (grunt) {
                 relative: true
             },
             local_dependencies: {
+                options: {
+                    ignorePath: clientConfig.jsSpecFile
+                },
                 files: {
-                    'client/index.html': clientConfig.jsAllFile,
+                    'client/index.html': _.concat(clientConfig.jsAllFile, clientConfig.jsFramework)
                 }
             }
         },
@@ -186,10 +200,10 @@ module.exports = function (grunt) {
 
 
 
-    grunt.registerTask('default', ['clean','jshint', 'wiredep', 'injector', 'less', 'express', 'open', 'watch']);
+    grunt.registerTask('default', ['clean', 'jshint', 'wiredep', 'injector', 'less', 'express', 'open', 'watch']);
     grunt.registerTask('server', ['jshint:server']);
     grunt.registerTask('client', ['jshint:client']);
-    grunt.registerTask('include', ['clean','includeSource']);
+    grunt.registerTask('include', ['clean', 'includeSource']);
 
     //grunt.registerTask('server', ['jshint']);
 

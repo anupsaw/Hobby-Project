@@ -24,6 +24,7 @@ router.route('/login')
     .post(login.authenticate);
 
 router.route('/signup')
+    .get(signup.getModel)
     .post(signup.register);
 
 router.route('/signup/checkemail')

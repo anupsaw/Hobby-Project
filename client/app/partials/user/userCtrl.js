@@ -5,7 +5,7 @@
         .controller('userCtrl', ['$state',function ($state) {
 
             var vm = this;
-            $state.go('user.login');
+            //$state.go('user.login');
 
         }]);
 

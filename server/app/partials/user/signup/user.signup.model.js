@@ -9,12 +9,23 @@ var UserSchema = new Schema({
     FirstName: {
         type: String,
         trim: true,
-        default: ''
+        default: '',
+        config: {
+            bindToView: true,
+            element: 'input',
+            type: 'text'
+        }
+
     },
     LastName: {
         type: String,
         trim: true,
-        default: ''
+        default: '',
+        config: {
+            bindToView: true,
+            element: 'input',
+            type: 'text'
+        }
     },
     EmailId: {
         type: String,
@@ -22,17 +33,27 @@ var UserSchema = new Schema({
         default: '',
         unique: true,
         index: true,
-        required:true
+        required: true,
+        config: {
+            bindToView: true,
+            element: 'input',
+            type: 'email'
+        }
 
     },
     CreateDate: {
-        type:Date,
-        default:Date.now()
+        type: Date,
+        default: Date.now()
     },
-    Password:{
-        type:String,
-        required:true,
-        trim:true
+    Password: {
+        type: String,
+        required: true,
+        trim: true,
+        config: {
+            bindToView: true,
+            element: 'input',
+            type: 'text'
+        }
     }
 
 

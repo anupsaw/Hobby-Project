@@ -4,28 +4,30 @@
             <div class="card-content black-text">
                 <div class="card-title"><span>SIGN UP</span></div>
                 <form>
-                    <as-form page='{{signupCtrl.page}}'></as-form>
                     <div class="row">
                         <div class="input-field">
-                            <input type="text" class="validate" id="firstname" ng-model='signupCtrl.userModelData.FirstName'/>
+                            <label for="firstname">First</label>
+                            <input type="text" class="validate" id="firstname" ng-model='signupCtrl.userModelData.FirstName' placeholder="First Name">
                             <label for="firstname">First Name</label>
+                            
                         </div>
+                        <div></div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input type="text" class="validate" id="lastname" ng-model='signupCtrl.userModelData.LastName' />
+                            <input type="text" class="validate" id="lastname" ng-model='signupCtrl.userModelData.LastName' placeholder="Last Name">
                             <label for="lastname">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input type="email" class='validate' id="emailid" required ng-model='signupCtrl.userModelData.EmailId'/>
+                            <input type="email" class='validate' id="emailid" required ng-model='signupCtrl.userModelData.EmailId'>
                             <label for="emailid">Email address</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input type="password" class='validate' id="password" required ng-model='signupCtrl.userModelData.Password'/>
+                            <input type="password" class='validate' id="password" required ng-model='signupCtrl.userModelData.Password'>
                             <label for="password">Password</label>
                         </div>
                     </div>

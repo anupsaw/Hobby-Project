@@ -7,7 +7,8 @@ var moduleName = 'user.signup.controller';
 module.exports = {
 
     register: register,
-    checkEmail: checkEmail
+    checkEmail: checkEmail,
+    getModel:getModel
 };
 
 
@@ -37,6 +38,10 @@ function checkEmail(req, res) {
         res.send(returnObj);
     });
 
+}
+
+function getModel(req, res) {
+    res.send(userDataModel.schema.tree);
 }
 
 // function checkForError(res, err) {
