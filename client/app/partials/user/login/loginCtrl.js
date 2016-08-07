@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('MovieApp')
-        .controller('loginCtrl', ['dataService', function (dataService) {
+        .controller('loginCtrl', ['$state', 'dataService', function ($state, dataService) {
 
             var vm = this;
 
@@ -17,8 +17,8 @@
 
             function LoginUser(data) {
 
-                if (data.data === true) {
-                    alert('login Successful');
+                if (data) {
+                    $state.go('user.profile', { id: data._id });
                 } else {
                     alert(data.data);
                 }

@@ -1,4 +1,3 @@
-'use strict';
 
 module.exports = appRouter;
 var express = require('express')();

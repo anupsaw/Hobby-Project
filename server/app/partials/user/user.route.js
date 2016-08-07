@@ -4,8 +4,9 @@
 var express = require('express');
 var router = express.Router();
 
-var login = requireFile('app/partials/user/login/user.login.controller.js');
-var signup = requireFile('app/partials/user/signup/user.signup.controller.js');
+var login = requireFile('app/partials/user/user.login.controller.js');
+var signup = requireFile('app/partials/user/user.signup.controller.js');
+var profile = requireFile('app/partials/user/user.profile.controller.js');
 
 
 //function useRouter() {
@@ -24,8 +25,14 @@ router.route('/login')
     .post(login.authenticate);
 
 router.route('/signup')
-    .get(signup.getModel)
-    .post(signup.register);
+    .get(signup.getUserModel)
+    .post(signup.registerUser);
+
+
+router.route('/profile/:id')
+    .get(profile.getUserInfo)
+    .put(profile.updateUser);
+
 
 router.route('/signup/checkemail')
     .post(signup.checkEmail);

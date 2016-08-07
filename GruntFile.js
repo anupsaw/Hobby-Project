@@ -6,10 +6,11 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     var clientConfig = {
         jsAllFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js'],
+        jsFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js', '!./client/app/**/*-spec.js', '!./client/app/index-spec.js'],
         jsFramework: ['./client/framework_components/*.js', './client/framework_components/**/*.js'],
         jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
-        lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less'],
-         htmlFiles:['./client/index.html', './client/app/*.html', './client/app/**/*.html']
+        lessFile: ['./client/app/*.less', './client/app/**/*.less'],
+        htmlFiles: ['./client/index.html', './client/app/*.html', './client/app/**/*.html']
     }
 
 
@@ -27,18 +28,6 @@ module.exports = function (grunt) {
             js: 'client/build/'
         },
 
-        clientConfig: {
-            jsAllFile: ['client/index.js', 'client/app/*.js', 'client/app/**/*.js'],
-            jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
-            lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less']
-           
-        },
-
-
-        serverConfig: {
-            jsFile: ['./server/**/*.js', './server/index.js']
-        },
-
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
@@ -48,8 +37,8 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-            html:{
-                files: clientConfig.htmlFiles, 
+            html: {
+                files: clientConfig.htmlFiles,
                 options: {
                     livereload: true
                 }
@@ -164,7 +153,7 @@ module.exports = function (grunt) {
             },
             app: {
                 files: {
-                    'client/build/app.css': clientConfig.lessFile
+                    'client/build/app.css': 'client/less/as-app.less'
                 }
             }
         },
@@ -173,27 +162,28 @@ module.exports = function (grunt) {
             options: {
                 relative: true
             },
-            local_dependencies: {
+            less: {
                 options: {
-                    ignorePath: clientConfig.jsSpecFile
+                    starttag: '/** injector:{{ext}} */',
+                    endtag: '/** endinjector */',
+                    transform: function (filepath) {
+                        return '@import "' + filepath + '";'
+                    },
+                    sort: function (a, b) {
+                        return a.localeCompare(b);
+                    }
                 },
                 files: {
-                    'client/index.html': _.concat(clientConfig.jsAllFile, clientConfig.jsFramework)
+                    'client/less/as-app.less': clientConfig.lessFile
                 }
-            }
-        },
-
-        includeSource: {
-            options: {
-                basePath: 'client',
-                baseUrl: '',
             },
-            myTarget: {
+            js: {
                 files: {
-                    'client/build/index.html': 'client/index.html'
+                    'client/index.html': _.concat(clientConfig.jsFile, clientConfig.jsFramework)
                 }
             }
         }
+
 
 
     });
@@ -203,7 +193,8 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['clean', 'jshint', 'wiredep', 'injector', 'less', 'express', 'open', 'watch']);
     grunt.registerTask('server', ['jshint:server']);
     grunt.registerTask('client', ['jshint:client']);
-    grunt.registerTask('include', ['clean', 'includeSource']);
+    grunt.registerTask('test', ['clean', 'injector:js']);
+    grunt.registerTask('build', ['clean', 'jshint', 'wiredep', 'injector', 'less']);
 
     //grunt.registerTask('server', ['jshint']);
 

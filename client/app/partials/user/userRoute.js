@@ -3,7 +3,7 @@
 
     function userRuoting($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/home');
 
         $stateProvider
             .state('user', {
@@ -19,10 +19,19 @@
                 controllerAs: 'loginCtrl'
             })
             .state('user.profile', {
-                url: '/profile',
+                url: '/profile/:id',
                 templateUrl: 'app/partials/user/profile/profile.html',
                 controller: 'profileCtrl',
-                controllerAs: 'profileCtrl'
+                controllerAs: 'profileCtrl',
+                params: { id: null },
+                resolve: {
+                    UserDate: ['$state', '$stateParams', 'dataService', function ($state, $stateParams, dataService) {
+                        var data;
+                        var id = $state.params.id;
+                        id = $stateParams.id;
+                        return dataService.Get(null,  '/user/profile/' + id);
+                    }]
+                }
             })
             .state('user.signup', {
                 url: '/signup',
@@ -31,7 +40,7 @@
                 controllerAs: 'signupCtrl',
                 resolve: {
                     userModelData: function (dataService) {
-                        return dataService.Get(null,'/user/signup').then(function (res) {
+                        return dataService.Get(null, '/user/signup').then(function (res) {
                             return res;
                         });
                     }

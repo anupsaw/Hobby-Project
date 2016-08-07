@@ -2,39 +2,99 @@
     <div class="col s12 m6">
         <div class="card">
             <div class="card-content black-text">
-                <div class="card-title"><span>SIGN UP</span></div>
+                <div class="row">
+                    <div class='card-title'>
+                        <i class="material-icons" style="font-size:190px;color:red">person</i></br>
+                        <span>{{profileCtrl.userModelData.FirstName}} {{profileCtrl.userModelData.LastName}} ({{profileCtrl.userModelData.Age}})</span>
+                    </div>
+                </div>
+                <!--<div class="row">
+                    <button type="submit" class="waves-effect waves-white btn as-btn-red" ng-click='profileCtrl.editProfile();' >EDIT PROFILE</button>
+                    
+                </div>-->
+                <div class="row">
+                    <button type="button" class="waves-effect waves-white btn as-btn-red" ng-click='profileCtrl.updatePassword();' >UPDATE PASSWORD</button>                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6" ng-hide="profileCtrl.isShowPasswordPanel">
+        <div class="card">
+            <div class="card-content black-text">
+                <div class="card-title"><span>UPDATE PROFILE</span></div>
                 <form>
                     <div class="row">
                         <div class="input-field">
-                            <label for="firstname">First</label>
-                            <input type="text" class="validate" id="firstname" ng-model='signupCtrl.userModelData.FirstName' placeholder="First Name">
-                            <label for="firstname">First Name</label>
-                            
+                         <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <input type="text" class="validate" disabled id="firstname" ng-model='profileCtrl.userModelData.FirstName' />
+                            <label for="firstname" >First Name</label>
                         </div>
                         <div></div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input type="text" class="validate" id="lastname" ng-model='signupCtrl.userModelData.LastName' placeholder="Last Name">
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <input type="text" class="validate" disabled id="lastname" ng-model='profileCtrl.userModelData.LastName' />
                             <label for="lastname">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input type="email" class='validate' id="emailid" required ng-model='signupCtrl.userModelData.EmailId'>
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <input type="email" class='validate' disabled id="emailid" required ng-model='profileCtrl.userModelData.EmailId'>
                             <label for="emailid">Email address</label>
+                        </div>
+                    </div>
+                      <div class="row">
+                        <div class="input-field">
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <input type="text" class='validate' disabled id="cellnumber" required ng-model='profileCtrl.userModelData.CellNumber'>
+                            <label for="cellnumber">Phone Number</label>
+                        </div>
+                    </div>
+                      <div class="row">
+                        <div class="input-field">
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <input type="text" class='validate' disabled id="age" required ng-model='profileCtrl.userModelData.Age'>
+                            <label for="age">Age</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn as-btn-red" ng-click='profileCtrl.UpdateProfile();'>UPDATE</button>
+                        <a href='' ng-click='profileCtrl.showPasswordPanel();'> PASSWORD UPDATE</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m6" ng-show="profileCtrl.isShowPasswordPanel">
+        <div class="card">
+            <div class="card-content black-text">
+                <div class="card-title"><span>UPDATE PASSWORD</span></div>
+                <form>
+                     <div class="row">
+                        <div class="input-field">
+                            <input type="password" class='validate' id="oldpassword" required ng-model='profileCtrl.userPasswordData.OldPassword'>
+                            <label for="oldpassword">Old Password</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input type="password" class='validate' id="password" required ng-model='signupCtrl.userModelData.Password'>
+                            <input type="password" class='validate' id="password" required ng-model='profileCtrl.userPasswordData.Password'>
                             <label for="password">Password</label>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="input-field">
+                            <input type="password" class='validate' id="confirmpassword" required ng-model='profileCtrl.userPasswordData.confirmpassword'>
+                            <label for="confirmpassword">Confirm Password</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <button type="submit" class="btn as-btn-red" ng-click='signupCtrl.RegisterUser();'>SIGN UP</button>
-                        <span>Already have account?<a href='#' ui-sref='user.login'> CLICK HERE</a></span>
+                        <button type="submit" class="btn as-btn-red" ng-click='profileCtrl.UpdatePassword();'>UPDATE</button>
+                         <button class="waves-effect waves-black btn-flat as-btn-blank" ng-click='profileCtrl.showPasswordPanel();'>CANCEL</button>
                     </div>
                 </form>
             </div>

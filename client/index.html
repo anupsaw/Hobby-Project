@@ -28,11 +28,11 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
         <nav>
             <div class="nav-wrapper">
                 <div class='container'>
-                    <a href="#!" class="brand-logo">My App</a>
-                    <a href="#" data-activates="as-side-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a href="#!" ui-sref='home' class="brand-logo">My App</a>
+                    <a href="#" ui-sref='home' data-activates="as-side-nav" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href='#' class="waves-effect waves-black btn-flat as-btn-blank" ui-sref='user.signup'>Sign up</a></li>
-                        <li><a href='#' class="waves-effect waves-light btn as-btn-red" ui-sref='user.login'>Log in</a></li>
+                        <li><a href='#' class="waves-effect waves-white btn as-btn-red" ui-sref='user.login'>Log in</a></li>
                     </ul>
                     <ul class="side-nav" id="as-side-nav">
                         <li style="height:40px; background-color:#ee6e73;"><a href="#!" class="brand-logo">My App</a></li>
@@ -98,25 +98,18 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
  
     <!-- injector:js -->
     <script src="/index.js"></script>
+    <script src="/app/test.js"></script>
     <script src="/app/directives/emailStatus.js"></script>
     <script src="/app/directives/notification.js"></script>
-    <script src="/app/partials/home/homeCtrl-spec.js"></script>
     <script src="/app/partials/home/homeCtrl.js"></script>
     <script src="/app/partials/home/homeRoute.js"></script>
-    <script src="/app/partials/user/login/loginCtrl-spec.js"></script>
     <script src="/app/partials/user/login/loginCtrl.js"></script>
-    <script src="/app/partials/user/profile/profileCtrl-spec.js"></script>
     <script src="/app/partials/user/profile/profileCtrl.js"></script>
-    <script src="/app/partials/user/resetpassword/resetpasswordCtrl-spec.js"></script>
     <script src="/app/partials/user/resetpassword/resetpasswordCtrl.js"></script>
-    <script src="/app/partials/user/securityquestions/securityquestionsCtrl-spec.js"></script>
     <script src="/app/partials/user/securityquestions/securityquestionsCtrl.js"></script>
-    <script src="/app/partials/user/signup/signupCtrl-spec.js"></script>
     <script src="/app/partials/user/signup/signupCtrl.js"></script>
-    <script src="/app/partials/user/userCtrl-spec.js"></script>
     <script src="/app/partials/user/userCtrl.js"></script>
     <script src="/app/partials/user/userRoute.js"></script>
-    <script src="/app/services/dataService/dataService-spec.js"></script>
     <script src="/app/services/dataService/dataService.js"></script>
     <script src="/framework_components/directives/as-ui-form/as-form.js"></script>
     <script src="/framework_components/directives/as-ui-form/dataService.js"></script>

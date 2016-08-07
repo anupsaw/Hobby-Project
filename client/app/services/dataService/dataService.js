@@ -18,7 +18,7 @@
 
             function DataHandler(method, appendUrl) {
 
-                return function (data, url, header) {
+                return function (data, url, params, header) {
 
 
                     var httpUrl = creatURL(url,appendUrl);
@@ -27,7 +27,8 @@
                         method: method,
                         url: httpUrl,
                         data: data,
-                        header: header
+                        header: header,
+                        params:params
                     }).then(function (data) {
                         defer.resolve(data.data);
                     }, function (error) {

@@ -1,12 +1,28 @@
 @import "../bower_components/font-awesome/less/font-awesome.less";
-@import "as-mixins.less";
 @import "as-variable.less";
+@import "as-mixins.less";
+@import "as-override-materilize.less";
+
+/** injector:less */
+@import "/../app/partials/home/home.less";
+@import "/../app/partials/user/login/login.less";
+@import "/../app/partials/user/profile/profile.less";
+@import "/../app/partials/user/resetpassword/resetpassword.less";
+@import "/../app/partials/user/securityquestions/securityquestions.less";
+@import "/../app/partials/user/signup/signup.less";
+@import "/../app/partials/user/user.less";
+/** endinjector */
+
 html{
     line-height: 1.5;
-    font-family: "Roboto", sans-serif;
+        font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif !important;
     font-weight: normal;
     color: rgba(0,0,0,0.87);
     background-color: @as-html-color;
+}
+
+body{
+        font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif !important;
 }
 
 
@@ -24,6 +40,26 @@ html{
 }
 .fa:before{
  font-size: 22px;
+}
+
+.as-edit {
+   .as-icon(@fa-var-pencil, 25px);  
+}
+
+.as-undo{
+  .as-icon(@fa-var-undo, 25px);  
+}
+
+input[type=text]:disabled{
+    font-weight: 600;
+}
+input[type=email]:disabled{
+    font-weight: 600;
+}
+
+
+.bold{
+    font-weight: bold;
 }
 
 

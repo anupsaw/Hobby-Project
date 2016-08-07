@@ -1,6 +1,7 @@
-'use strict';
+
 
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;
 
 
@@ -49,6 +50,28 @@ var UserSchema = new Schema({
         type: String,
         required: true,
         trim: true,
+        config: {
+            bindToView: true,
+            element: 'input',
+            type: 'text'
+        }
+    },
+      CellNumber: {
+        type: String,
+        required: false,
+        default: '',
+        trim: false,
+        config: {
+            bindToView: true,
+            element: 'input',
+            type: 'text'
+        }
+    },
+      BirthDate: {
+        type: Date,
+        required: false,
+        trim: false,
+        default: null,
         config: {
             bindToView: true,
             element: 'input',

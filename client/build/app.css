@@ -2197,40 +2197,6 @@
   overflow: visible;
   clip: auto;
 }
-html {
-  line-height: 1.5;
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #f5f5f5;
-}
-.required-error,
-.required-error:focus {
-  border-left: 5px solid red;
-}
-.required-ok,
-.required-ok:focus {
-  border-left: 5px solid limegreen;
-}
-.as-user:before {
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\f007";
-  font-size: 44px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.fa:before {
-  font-size: 22px;
-}
-
-
-
-
 nav {
   background-color: #f5f5f5;
   background: #fff;
@@ -2272,6 +2238,9 @@ footer.page-footer {
 .as-btn-blank:focus {
   background-color: white;
 }
+.input-field .prefix.active {
+  color: red;
+}
 .btn-flat {
   border: 1px solid black;
 }
@@ -2286,13 +2255,83 @@ footer.page-footer {
   margin-bottom: 20px;
   font-weight: 500;
 }
-
-
-
-
-
-
-
+/** injector:less */
 .anup {
   color: red;
+}
+/** endinjector */
+html {
+  line-height: 1.5;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #f5f5f5;
+}
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+.required-error,
+.required-error:focus {
+  border-left: 5px solid red;
+}
+.required-ok,
+.required-ok:focus {
+  border-left: 5px solid limegreen;
+}
+.as-user:before {
+  color: red;
+  font-weight: 500;
+}
+.as-user:before:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f007";
+  font-size: 44px;
+  padding-left: 10px;
+}
+.fa:before {
+  font-size: 22px;
+}
+.as-edit {
+  color: red;
+  font-weight: 500;
+}
+.as-edit:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f040";
+  font-size: 25px;
+  padding-left: 10px;
+}
+.as-undo {
+  color: red;
+  font-weight: 500;
+}
+.as-undo:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f0e2";
+  font-size: 25px;
+  padding-left: 10px;
+}
+input[type=text]:disabled {
+  font-weight: 600;
+}
+input[type=email]:disabled {
+  font-weight: 600;
+}
+.bold {
+  font-weight: bold;
 }

@@ -6,12 +6,20 @@ module.exports = main;
 var bodyParser = require('body-parser');
 var router = require('./app/route/app.route.js')();
 // export module
-function main(app,db) {
+function main(app, db) {
 
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(router);
-    console.log('anup');
+
+
+    //this should alwasy be last;
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.send(err);
+    });
+
+
     return app;
 
 }

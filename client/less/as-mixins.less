@@ -1,10 +1,13 @@
-
-.as-icon(@content,@size:22px){
+.as-icon(@content,@size:22px,@color:red){
+   color:@color;
+    font-weight:500;
+    &:before{
     .fa-icon();
     content: @content;
     font-size:@size;
     padding-left:10px;
-    padding-right:10px
+    }
+
 }
 
 .as-btn(@color){

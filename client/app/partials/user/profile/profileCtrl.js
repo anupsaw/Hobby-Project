@@ -1,23 +1,35 @@
 (function () {
     'use strict';
     angular.module('MovieApp')
-        .controller('signupCtrl', ['dataService', 'userModelData', function (dataService, userModelData) {
+        .controller('profileCtrl', ['$scope', 'dataService', 'UserDate', function ($scope, dataService, UserDate) {
 
             var vm = this;
-            vm.page = 'user.signup';
-            vm.userModelData = {};
+            vm.isShowPasswordPanel = false;
+            vm.userModelData = UserDate;
 
-            vm.RegisterUser = RegisterUser;
+            vm.updatePassword = updatePassword;
+            vm.showPasswordPanel = showPasswordPanel;
+            vm.UpdateProfile = UpdateProfile;
+            // vm.edit = editField;
 
-            function RegisterUser() {
-
-                dataService.Post(vm.userModelData);
-                // dataService.Put('/user', vm.userModelData)
-                //dataService.Delete('/user', vm.userModelData)
-                // dataService.Get('/user', vm.userModelData)
-
+            function activate() {
+                angular.element(document).ready(function () {
+                    window.Materialize.updateTextFields();
+                });
+            }
+            function updatePassword() {
+                vm.showPasswordPanel();
             }
 
+            function showPasswordPanel() {
+                vm.isShowPasswordPanel = !vm.isShowPasswordPanel;
+            }
+
+            function UpdateProfile() {
+                dataService.Put(vm.userModelData);
+            }
+
+            activate();
         }]);
 
 })();
