@@ -5,6 +5,7 @@ module.exports = main;
 //require module
 var bodyParser = require('body-parser');
 var router = require('./app/route/app.route.js')();
+var errHandler = requireFile('app/error/errorHandler.js');
 // export module
 function main(app, db) {
 

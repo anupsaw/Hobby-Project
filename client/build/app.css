@@ -2230,6 +2230,7 @@ footer.page-footer {
 }
 .as-btn-blank {
   background-color: white;
+  border: 1px solid black;
 }
 .as-btn-blank:hover {
   opacity: 1.5;
@@ -2240,9 +2241,6 @@ footer.page-footer {
 }
 .input-field .prefix.active {
   color: red;
-}
-.btn-flat {
-  border: 1px solid black;
 }
 .waves-effect.waves-red .waves-ripple {
   background-color: red;

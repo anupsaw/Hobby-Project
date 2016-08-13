@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="input-field">
+        <a href="" class='prefix as-edit' ng-if="field.config.editable" toggal-edit-access='true'></a>
+        <input type={{::field.attr.type}} class="validate" ng-disabled ='field.config.disabled' id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'/>
+        <label for={{::field.attr.key}}>{{::field.attr.label}}</label>
+    </div>
+</div>

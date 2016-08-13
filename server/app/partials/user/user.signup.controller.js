@@ -1,63 +1,59 @@
-var userDataModel = requireFile('app/partials/user/user.signup.model.js');
-var errHandler = requireFile('app/error/errorHandler.js');
 var moduleName = 'user.signup.controller';
+var userDataModel = requireFile('app/partials/user/user.signup.model.js');
+var errHandler = requireFile('app/error/errorHandler.js')(moduleName);
+var error = errHandler.customError;
+var errorType = errHandler.errorType;
+
 
 module.exports = {
     registerUser: registerUser,
     checkEmail: checkEmail,
-    getUserModel:getUserModel
+    getUserModel: getUserModel
 };
 
 
-function registerUser(req, res) {
+function registerUser(req, res, next) {
     var hasValue;
-
     var User = new userDataModel();
-
-    hasValue = buildModelObject(User, req.body);
-    // for (var prop in req.body) {
-    //     User[prop] = req.body[prop];
-    //     hasValue = true;
-    // }
+    hasValue = buildModelObject(User, req.body, next);
     if (hasValue) {
         User.save(function (err, saveObj) {
-            if (err) {
-                errHandler.checkForError(res, err, moduleName);
-            } else {
-                res.send(saveObj);
-            }
+            if (err) return next(error(err));
+            res.send(saveObj);
         });
     } else {
-        errHandler.bindAndSendErrResponse(res, 'A1000', moduleName);
+        return next(error(errorType.dataNotFound));
     }
 
 }
 
 
 
-function checkEmail(req, res) {
+function checkEmail(req, res, next) {
     userDataModel.findOne({ 'EmailId': req.body.EmailId }, function (err, foundEmail) {
-        if (err) {
-            errHandler.checkForError(res, err, moduleName);
-        } else {
-            var returnObj = foundEmail ? false : true;
-            res.send(returnObj);
-        }
+          if (err) return next(error(err));
+        var returnObj = foundEmail ? false : true;
+        res.send(returnObj);
     });
 
 }
 
-function getUserModel(req, res) {
+function getUserModel(req, res, next) {
     res.send(userDataModel.schema.tree);
 }
 
 
-function buildModelObject(schemObj, reqBody) {
+function buildModelObject(schemObj, reqBody, next) {
 
-    var hasValue = false;
-    for (var prop in reqBody) {
-        schemObj[prop] = reqBody[prop];
-        hasValue = true;
+    try {
+        var hasValue = false;
+        for (var prop in reqBody) {
+            schemObj[prop] = reqBody[prop];
+            hasValue = true;
+        }
+        return hasValue;
+    } catch (err) {
+        
+         return next(error(err));
     }
-    return hasValue;
 }

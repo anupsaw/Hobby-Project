@@ -8,7 +8,6 @@
 
             vm.Authenticate = Authenticate;
 
-
             function Authenticate() {
 
                 dataService.Post(vm.userModelData).then(LoginUser);

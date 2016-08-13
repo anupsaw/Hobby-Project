@@ -7,10 +7,12 @@ module.exports = function (grunt) {
     var clientConfig = {
         jsAllFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js'],
         jsFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js', '!./client/app/**/*-spec.js', '!./client/app/index-spec.js'],
-        jsFramework: ['./client/framework_components/*.js', './client/framework_components/**/*.js'],
+        jsFramework: ['./client/framework_components/*.js', './client/framework_components/**/*.js', '!./client/*/template.js', '!./client/**/template.js'],
         jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
         lessFile: ['./client/app/*.less', './client/app/**/*.less'],
-        htmlFiles: ['./client/index.html', './client/app/*.html', './client/app/**/*.html']
+        htmlFiles: ['./client/index.html', './client/app/*.html', './client/app/**/*.html'],
+        htmlFramework: ['framework_components/*.tpl.html', 'framework_components/**/*.tpl.html'],
+        jsTemplate: ['./client/*/template.js', './client/**/template.js']
     }
 
 
@@ -177,24 +179,67 @@ module.exports = function (grunt) {
                     'client/less/as-app.less': clientConfig.lessFile
                 }
             },
+            frameworkJs: {
+                options: {
+                    starttag: '<!-- injectFrameWork:{{ext}} -->',
+                    endtag: '<!-- endinjector -->',
+                    sort: function (a, b) {
+                        return b.localeCompare(a);
+                    }
+                },
+                files: {
+                    'client/index.html': clientConfig.jsFramework
+                }
+            },
+            templateJs: {
+                options: {
+                    starttag: '<!-- injectTemplate:{{ext}} -->',
+                    endtag: '<!-- endinjector -->',
+                    sort: function (a, b) {
+                        return b.localeCompare(a);
+                    }
+                },
+                files: {
+                    'client/index.html': clientConfig.jsTemplate
+                }
+            },
             js: {
                 files: {
-                    'client/index.html': _.concat(clientConfig.jsFile, clientConfig.jsFramework)
+                    'client/index.html': clientConfig.jsFile
                 }
             }
+
+        },
+
+        ngtemplates: {
+            app: {
+                src: clientConfig.htmlFramework,
+                dest: 'client/framework_components/template.js',
+                cwd: './client',
+                options: {
+                    module: 'as-ui',
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: false,
+                        removeAttributeQuotes: true,
+                        removeComments: true, // Only if you don't use comment directives! 
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                }
+            }
+
         }
-
-
-
     });
 
 
 
     grunt.registerTask('default', ['clean', 'jshint', 'wiredep', 'injector', 'less', 'express', 'open', 'watch']);
-    grunt.registerTask('server', ['jshint:server']);
-    grunt.registerTask('client', ['jshint:client']);
     grunt.registerTask('test', ['clean', 'injector:js']);
-    grunt.registerTask('build', ['clean', 'jshint', 'wiredep', 'injector', 'less']);
+    grunt.registerTask('build', ['clean', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less']);
+    grunt.registerTask('test2', ['ngtemplates']);
 
     //grunt.registerTask('server', ['jshint']);
 

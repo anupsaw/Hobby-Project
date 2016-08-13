@@ -1,46 +1,46 @@
-(function () {
-    'use strict';
+// (function () {
+//     'use strict';
 
-    angular.module('asuiform', [])
-    angular.module('asuiform')
-        .directive('asForm', function ($parse) {
-            return {
+//     angular.module('asuiform', [])
+//     angular.module('asuiform')
+//         .directive('asKTForm', function ($parse) {
+//             return {
 
-                restrict: 'E',
-                controller: 'formCtrl',
-                controllerAs: 'formCtrl',
-                bindToController:true,
-                scope: {
-                    page: '@'
-                },
-                link: function (scope, element, attr, ctrl) {
+//                 restrict: 'E',
+//                 controller: 'formCtrl',
+//                 controllerAs: 'formCtrl',
+//                 bindToController:true,
+//                 scope: {
+//                     page: '@'
+//                 },
+//                 link: function (scope, element, attr, ctrl) {
 
-                }
-            };
-        })
-        .controller('formCtrl', ['$scope', 'dataService', function ($scope, dataService) {
+//                 }
+//             };
+//         })
+//         .controller('formCtrl', ['$scope', 'dataService', function ($scope, dataService) {
 
-            //private varibale
-            var url;
+//             //private varibale
+//             var url;
 
-            //controller variable
+//             //controller variable
 
-            //controller methods
-            var vm = this;
-
-
-
-            // funtions
-
-            function getModel() {
-                url = '/' + vm.page.split('.').join('/');
-                dataService.Get(null, url).then(function (res) {
-                    console.log(res);
-                })
-            }
-            getModel();
+//             //controller methods
+//             var vm = this;
 
 
-        }]);
 
-})();
+//             // funtions
+
+//             function getModel() {
+//                 url = '/' + vm.page.split('.').join('/');
+//                 dataService.Get(null, url).then(function (res) {
+//                     console.log(res);
+//                 })
+//             }
+//             getModel();
+
+
+//         }]);
+
+// })();

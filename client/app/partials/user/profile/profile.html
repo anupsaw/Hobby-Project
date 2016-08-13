@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <!--<div class="row">
-                    <button type="submit" class="waves-effect waves-white btn as-btn-red" ng-click='profileCtrl.editProfile();' >EDIT PROFILE</button>
+                    <button type="submit" class="waves-effect waves-white btn as-btn-red" ng-click=''profileCtrl.edit'Profile();' >EDIT PROFILE</button>
                     
                 </div>-->
                 <div class="row">
@@ -25,42 +25,41 @@
                 <form>
                     <div class="row">
                         <div class="input-field">
-                         <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                         <a href="" class='prefix as-edit' toggal-edit-access='true'  ></a>
                             <input type="text" class="validate" disabled id="firstname" ng-model='profileCtrl.userModelData.FirstName' />
                             <label for="firstname" >First Name</label>
                         </div>
-                        <div></div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'  ></a>
                             <input type="text" class="validate" disabled id="lastname" ng-model='profileCtrl.userModelData.LastName' />
                             <label for="lastname">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'  ></a>
                             <input type="email" class='validate' disabled id="emailid" required ng-model='profileCtrl.userModelData.EmailId'>
                             <label for="emailid">Email address</label>
                         </div>
                     </div>
                       <div class="row">
                         <div class="input-field">
-                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'  ></a>
                             <input type="text" class='validate' disabled id="cellnumber" required ng-model='profileCtrl.userModelData.CellNumber'>
                             <label for="cellnumber">Phone Number</label>
                         </div>
                     </div>
                       <div class="row">
                         <div class="input-field">
-                            <a href="" class='prefix as-edit' toggal-edit-access='true'></a>
-                            <input type="text" class='validate' disabled id="age" required ng-model='profileCtrl.userModelData.Age'>
-                            <label for="age">Age</label>
+                            <a href="" class='prefix as-edit' toggal-edit-access='true'  ></a>
+                            <input type="text" class=' datepicker' disabled id="dob" required ng-model='profileCtrl.userModelData.BirthDate'>
+                            <label for="dob">DOB</label>
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="btn as-btn-red" ng-click='profileCtrl.UpdateProfile();'>UPDATE</button>
+                        <button  class="btn as-btn-red" ng-disabled="!profileCtrl.edit" ng-click='profileCtrl.UpdateProfile();'>UPDATE</button>
                         <a href='' ng-click='profileCtrl.showPasswordPanel();'> PASSWORD UPDATE</a>
                     </div>
                 </form>

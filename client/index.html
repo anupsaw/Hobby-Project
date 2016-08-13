@@ -95,10 +95,18 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
     <!-- include: "type": "js", "files": "client/index.js" -->
 
     <!-- /include -->
- 
+ <!-- injectFrameWork:js -->
+ <script src="/framework_components/directives/as-ui/as-ui.js"></script>
+ <script src="/framework_components/directives/as-ui/as-input/as-input.js"></script>
+ <script src="/framework_components/directives/as-ui/as-input/as-input-spec.js"></script>
+ <script src="/framework_components/directives/as-ui-form/dataService.js"></script>
+ <script src="/framework_components/directives/as-ui-form/as-form.js"></script>
+ <!-- endinjector -->
+
     <!-- injector:js -->
     <script src="/index.js"></script>
     <script src="/app/test.js"></script>
+    <script src="/app/directives/CSSInit/materializeInit.js"></script>
     <script src="/app/directives/emailStatus.js"></script>
     <script src="/app/directives/notification.js"></script>
     <script src="/app/partials/home/homeCtrl.js"></script>
@@ -111,10 +119,11 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
     <script src="/app/partials/user/userCtrl.js"></script>
     <script src="/app/partials/user/userRoute.js"></script>
     <script src="/app/services/dataService/dataService.js"></script>
-    <script src="/framework_components/directives/as-ui-form/as-form.js"></script>
-    <script src="/framework_components/directives/as-ui-form/dataService.js"></script>
     <!-- endinjector -->
 
+<!-- injectTemplate:js -->
+<script src="/framework_components/template.js"></script>
+<!-- endinjector -->
 <script>
     $( document ).ready(function(){
         $(".button-collapse").sideNav();

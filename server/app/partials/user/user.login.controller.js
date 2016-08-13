@@ -1,47 +1,43 @@
-module.exports = {
-    authenticate: authenticate
-};
+
 
 var moduleName = 'user.login.controller';
 var userDataModel = requireFile('app/partials/user/user.signup.model.js');
 var errHandler = requireFile('app/error/errorHandler.js')(moduleName);
-var CustomError = errHandler.CustomError;
+var error = errHandler.customError;
 var errorType = errHandler.errorType;
 
-
-
+module.exports = {
+    authenticate: authenticate
+};
 
 function authenticate(req, res, next) {
 
-    if (req.body.EmailId === undefined || req.body.EmailId === '') {
-        return catchError(errorType.emailIdNotExists, next);
-    }
-
 
     try {
-        var Promise = userDataModel.findOne({ 'EmailId': req.body.EmailId });
-        Promise
-            .then(sendUserData)
-            .catch(catchError);
+        if (req.body.EmailId === undefined || req.body.EmailId === '') {
+            next(error(errorType.emailIdNotExists));
+        }
+
+        userDataModel.findOne({ 'EmailId': req.body.EmailId })
+            .then(function (data) {
+                if (data) {
+                    // if (data.Password === req.body.Password) res.send(data);  //password not authenticated 
+                    res.send(data);
+                } else {
+                    var err = errorType.dataNotFound;
+                    return next(error(err));
+                }
+            })
+            .catch(function (err) {
+                return next(error(err));
+            });
     }
     catch (err) {
-        return catchError(err, next);
-    }
-
-    function sendUserData(userData) {
-        if (userData) {
-            // if (Data.Password === req.body.Password) res.send(UserData);  //password not authenticated 
-            res.send(userData);
-        } else {
-            return catchError(errorType.dataNotFound);
-        }
+        return next(error(err));
     }
 
 
-    function catchError(err) {
-        var errr = new CustomError(err);
-        next(errr);
-    }
+
 
 }
 

@@ -8,8 +8,13 @@ function errorHandler(moduleName) {
     moduleName = moduleName;
     return {
         errorType: errorType,
-        customError: CustomError
+        customError: customError
     };
+}
+
+
+function customError(err, code, status) {
+    return new CustomError(err, code, status);
 }
 
 
@@ -18,7 +23,7 @@ function CustomError(err, code, status) {
     this.stack = err.stack || Error.captureStackTrace(this);
     this.message = err.message;
     this.status = err.status || status;
-    this.code = code || err.code;
+    this.code = code || err.code || 'U0000';
     this.module = moduleName;
     this.timestamp = Date.now();
     this.name = 'CustomError';

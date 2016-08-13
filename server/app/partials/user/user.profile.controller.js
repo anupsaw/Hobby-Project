@@ -1,35 +1,35 @@
+
+var moduleName = 'user.profile.controller';
+var userDataModel = requireFile('app/partials/user/user.signup.model.js');
+var errHandler = requireFile('app/error/errorHandler.js')(moduleName);
+var error = errHandler.customError;
+var errorType = errHandler.errorType;
+
+
 module.exports = {
     updateUser: updateUser,
     getUserInfo: getUserInfo
 
 };
 
-var moduleName = 'user.profile.controller';
-var userDataModel = requireFile('app/partials/user/user.signup.model.js');
-var errHandler = requireFile('app/error/errorHandler.js')(moduleName);
-var CustomError = errHandler.CustomError;
-var errorType = errHandler.errorType;
-var next;
-
-
-
 function updateUser(req, res, next) {
-    next = next;
     var id = req.params.id;
     userDataModel.findOne({ _id: id })
         .then(processData)
         .then(sendResponse)
-        .catch(catchError);
+        .catch(function (err) {
+            return next(error(err));
+        });
 
 
     function processData(data) {
-        if (!data) return catchError(errorType.dataNotFound);
+        if (!data) return next(error(errorType.dataNotFound));
 
         var hasData = buildModelObject(data, req.body);
         if (hasData) {
             return data.save();
         } else {
-            return catchError(errorType.dataProcessingError);
+            return next(error(errorType.dataProcessingError));
         }
 
     }
@@ -49,32 +49,26 @@ function updateUser(req, res, next) {
             return hasValue;
         }
         catch (err) {
-            catchError(err);
+            return next(error(err));
         }
     }
 
 }
 
-function getUserInfo(req, res) {
-    next = next;
+function getUserInfo(req, res, next) {
     var id = req.params.id;
     userDataModel.findOne({ _id: id }, function (err, data) {
-        if (!data) return catchError(errorType.dataFetchFound);
+        if (err) return next(error(err));
 
         if (data) {
             res.send(data);
         } else {
-            return catchError(errorType.dataNotFound);
+            return next(error(errorType.dataNotFound));
         }
     });
 
 }
 
-
-function catchError(err) {
-    var errr = new CustomError(err);
-    next(errr);
-}
 
 
 

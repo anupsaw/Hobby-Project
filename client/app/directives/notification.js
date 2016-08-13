@@ -60,37 +60,45 @@
         });
 
     angular.module('MovieApp')
-        .directive('toggalEditAccess', function ($parse) {
+        .directive('toggalEditAccess', function ($parse, $compile) {
             return {
                 restrict: 'A',
-                link: function (scope, element, attr) {
+                link: function (scope, element, attr, ctrl) {
+                    var EleQue = [];
                     element.on('click', function () {
                         var parent = element.parent();
                         var input = parent.find('input');
                         var label = parent.find('label');
                         if (attr.toggalEditAccess === 'true') {
-                            attr.toggalEditAccess = 'false';
+                            attr.$set('toggalEditAccess', 'false');
                             element.removeClass('as-undo');
                             element.addClass('active as-undo');
                             input.removeAttr('disabled');
                             Materialize.updateTextFields();
                             input[0].focus();
                             label.addClass('active');
-                            
+                            EleQue.push(element);
+
                         } else {
-                            attr.toggalEditAccess = 'true';
+                            attr.$set('toggalEditAccess', 'true');
                             input.attr('disabled', "disabled");
                             input.removeClass('valid');
                             label.removeClass('active');
                             element.removeClass('active as-undo');
                             element.addClass('active as-edit');
                             Materialize.updateTextFields();
+                            EleQue.pop();
                         }
-                        
 
                     });
                 }
             };
         });
+
+
+
+
+
+
 
 })();
