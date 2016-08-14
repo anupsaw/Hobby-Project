@@ -6,4 +6,8 @@
             var vm = this;
         }]);
         
+
+        $(document).ready(function() {
+    $('select').material_select();
+  });
 })();

@@ -1,7 +1,25 @@
-<div class="row">
-    <div class="input-field">
-        <a href="" class='prefix as-edit' ng-if="field.config.editable" toggal-edit-access='true'></a>
-        <input type={{::field.attr.type}} class="validate" ng-disabled ='field.config.disabled' id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'/>
+<div class="row" >
+    <div class="input-field as-edit-field" ng-if="field.config.editable">
+        <a href="" class='prefix active' ng-class="{'as-edit':!asInputCtrl.isEdit, 'as-undo':asInputCtrl.isEdit}"></a>
+        <input type={{::field.attr.type}} ng-disabled ='(field.config.disabled || field.config.editable) && !asInputCtrl.isEdit' id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'/>
+        <label for={{::field.attr.key}} >{{::field.attr.label}}</label>
+    </div>
+    <div class="input-field"  ng-if="!field.config.editable">
+        <input type={{::field.attr.type}} ng-disabled ='field.config.disabled' id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'/>
         <label for={{::field.attr.key}}>{{::field.attr.label}}</label>
     </div>
 </div>
+
+
+
+<!--<div class="row" >
+    <div class="input-field" ng-if="field.config.editable">
+        <a href="" class='prefix active' ng-class="{'as-edit':!asInputCtrl.isEdit, 'as-undo':asInputCtrl.isEdit}"></a>
+        <input type={{::field.attr.type}} class="validate" ng-disabled ='(field.config.disabled || field.config.editable) && asInputCtrl.isEdit' id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'/>
+        <label for={{::field.attr.key}} ng-class="{'active':asInputCtrl.isEdit}">{{::field.attr.label}}</label>
+    </div>
+    <div class="input-field"  ng-if="!field.config.editable">
+        <input type={{::field.attr.type}} class="validate" ng-disabled ='field.config.disabled' id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'/>
+        <label for={{::field.attr.key}}>{{::field.attr.label}}</label>
+    </div>
+</div>-->

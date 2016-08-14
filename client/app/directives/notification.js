@@ -71,12 +71,13 @@
                         var label = parent.find('label');
                         if (attr.toggalEditAccess === 'true') {
                             attr.$set('toggalEditAccess', 'false');
-                            element.removeClass('as-undo');
+                            element.removeClass('as-edit');
                             element.addClass('active as-undo');
                             input.removeAttr('disabled');
                             Materialize.updateTextFields();
                             input[0].focus();
                             label.addClass('active');
+                            scope.editField = false;
                             EleQue.push(element);
 
                         } else {

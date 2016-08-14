@@ -10,7 +10,7 @@
                 controller: 'formCtrl',
                 controllerAs: 'formCtrl',
                 bindToController: true,
-                replace:true,
+                replace: true,
                 scope: {
                     page: '@',
                     name: '@'
@@ -19,12 +19,10 @@
 
                     scope.getTemplateUrl = getTemplateUrl;
                     function getTemplateUrl() {
-                         var div = $('<div>')
+                        var div = $('<div>')
                         scope.elements.forEach(function (item, index, self) {
                             ctrl.fields[item.name] = item;
-                            if (item.type === 'input') {
-                                div.append('<as-' + item.type + '  field="formCtrl.fields.' + item.name + '" model="model"></as-' + item.type + '>');
-                            }
+                            div.append('<as-' + item.type + '  field="formCtrl.fields.' + item.name + '" model="model"></as-' + item.type + '>');
                         });
 
                         $compile(div)(scope);
@@ -65,11 +63,59 @@
                     },
                     config: {
                         required: true, //optional
-                        editable: true, //optional
-                        disabled: true, //optional
+                        editable: false, //optional
+                        disabled: false, //optional
                     }
 
-                }]
+                },
+                {
+                    type: 'select',
+                    name: 'Gender', //element name as well as model name
+                    attr: {
+                        type: '',
+                        key: 'Gender', // this would be id
+                        label: 'SEX',
+                        class: '', //optional
+                    },
+                    config: {
+                        // required: true, //optional
+                        editable: false, //optional
+                        //disabled: true, //optional
+                    },
+                    select: {
+                        options:
+                        [
+                            { code: 0, value: 'option 1' },
+                            { code: 1, value: 'option 2' }
+                        ]
+                    }
+
+                }, {
+                    type: 'select',
+                    name: 'Name', //element name as well as model name
+                    attr: {
+                        type: 'multiple',
+                        key: 'Name', // this would be id
+                        label: 'Name',
+                        class: '', //optional
+                    },
+                    config: {
+                        required: true, //optional
+                        editable: true, //optional
+                        disabled: true, //optional
+                    },
+                    select: {
+                        options:
+                        [
+                            { code: 0, value: 'option 1' },
+                            { code: 1, value: 'option 2' },
+                            { code: 2, value: 'option 3' },
+                            { code: 3, value: 'option 4' }
+                        ]
+                    }
+
+                }
+            ]
 
             var model = {};
             var _model = {}
@@ -90,9 +136,9 @@
 
             $scope.model = model;
 
-            $scope.$watch('ModelData.FirstName', function (o, v) {
-                debugger;
-            })
+            // $scope.$watch('ModelData.FirstName', function (o, v) {
+            //     debugger;
+            // })
 
 
 

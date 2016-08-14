@@ -6,18 +6,18 @@
         .directive('datepicker', function ($compile) {
             return {
                 restrict: 'C',
-                require :'ngModel',
+                require: '?ngModel',
                 link: function (scope, element, attr, ctrl) {
                     element.on('click', function () {
-                            $(this).pickadate({
-                                selectMonths: true, // Creates a dropdown to control month
-                                selectYears: 15,
-                                onSet: function (context) {
-                                    ctrl.$setViewValue(new Date(context.select));
-                                    $(this)[0].close();
-                                }
-                            });
+                        $(this).pickadate({
+                            selectMonths: true, // Creates a dropdown to control month
+                            selectYears: 15,
+                            onSet: function (context) {
+                                ctrl.$setViewValue(new Date(context.select));
+                                $(this)[0].close();
+                            }
                         });
+                    });
                     // element.on('click', function () {
                     //     datepicker = $('.datepicker').pickadate({
                     //         selectMonths: true, // Creates a dropdown to control month
@@ -48,7 +48,7 @@
                 }
             };
         });
-
+    
 })();
 
 

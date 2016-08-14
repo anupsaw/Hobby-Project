@@ -236,7 +236,7 @@ module.exports = function (grunt) {
 
 
 
-    grunt.registerTask('default', ['clean', 'jshint', 'wiredep', 'injector', 'less', 'express', 'open', 'watch']);
+    grunt.registerTask('default', ['clean', 'jshint', 'wiredep','ngtemplates', 'injector', 'less', 'express', 'open', 'watch']);
     grunt.registerTask('test', ['clean', 'injector:js']);
     grunt.registerTask('build', ['clean', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less']);
     grunt.registerTask('test2', ['ngtemplates']);
