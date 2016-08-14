@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="input-field">
+        <span ng-repeat="btn in formCtrl.actions">
+        <button ng-if="btn.type == 'submit' && btn.actionType == 'save'" type="submit" class="waves-effect waves-white btn as-btn-red" ng-click='formCtrl.save();'>{{btn.displayText}}</button>
+        <button ng-if="btn.type == 'submit' && btn.actionType == 'cancel'" type="submit" class="waves-effect waves-black btn-flat as-btn-blank" ng-click='formCtrl.cancel();'>{{btn.displayText}}</button>
+        <button ng-if="btn.type == 'button' && btn.actionType == 'save'" class="waves-effect waves-white btn as-btn-red" ng-click='formCtrl.save();'>{{btn.displayText}}</button>
+        <button ng-if="btn.type == 'button' && btn.actionType == 'cancel'" class="waves-effect waves-black btn-flat as-btn-blank" ng-click='formCtrl.cancel();'>{{btn.displayText}}</button>
+        <span ng-if="btn.type == 'link' && btn.actionType == 'nav'">{{btn.displayinfo}}<a href='#' ui-sref='{{btn.function}}'> {{btn.displayText}}</a></span>
+        </span>
+    </div>
+</div>

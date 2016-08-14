@@ -3,7 +3,7 @@
 
     angular.module('as-ui', []);
     angular.module('as-ui')
-        .directive('asForm', function ($parse, $compile) {
+        .directive('asForm', function ($parse, $compile, dataService) {
             return {
                 template: '<form name ={{name}}></form>',
                 restrict: 'E',
@@ -13,7 +13,10 @@
                 replace: true,
                 scope: {
                     page: '@',
-                    name: '@'
+                    name: '@',
+                    formData: '=',
+                    target: '@',
+                    actions: '='
                 },
                 link: function (scope, element, attr, ctrl) {
 
@@ -24,7 +27,8 @@
                             ctrl.fields[item.name] = item;
                             div.append('<as-' + item.type + '  field="formCtrl.fields.' + item.name + '" model="model"></as-' + item.type + '>');
                         });
-
+                        var btns = '<ng-include src="' + "'framework_components/directives/as-ui/as-buttons/as-buttons.tpl.html'" + '"></ng-include>'
+                        div.append(btns);
                         $compile(div)(scope);
                         $(element).append(div);
                     }
@@ -33,11 +37,13 @@
                 }
             };
         })
-        .controller('formCtrl', ['$scope', '$compile', '$templateCache', 'dataService', function ($scope, $compile, $templateCache, dataService) {
+        .controller('formCtrl', function ($scope, $compile, $templateCache, dataService) {
 
             var vm = this;
             vm.fields = {};
-            $scope.elements = [{
+            var model = {};
+            var _model = {}
+            var elements = [{
                 type: 'input',
                 name: 'FirstName',
                 attr: {
@@ -117,8 +123,10 @@
                 }
             ]
 
-            var model = {};
-            var _model = {}
+
+            $scope.elements = vm.formData || elements;
+            vm.save = save;
+
 
             $scope.elements.forEach(function (item, i, self) {
 
@@ -136,18 +144,15 @@
 
             $scope.model = model;
 
-            // $scope.$watch('ModelData.FirstName', function (o, v) {
-            //     debugger;
-            // })
+            function save() {
+                dataService.Put($scope.model);
+            }
+            function cancel() {
+
+            }
 
 
 
-            //debugger;
-            //getTemplateUrl()
-
-
-            // getTemplateUrl();
-
-        }]);
+        });
 
 })();

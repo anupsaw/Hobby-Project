@@ -14,20 +14,13 @@ angular.module('as-ui')
 
                 var test = 0;
                 console.log('link');
-                // $(element).on('click', 'a.as-edit', function () {
-                //     ctrl.allowEditing();
-                // });
-                // $(element).on('click', 'a.as-undo', function () {
-                //     ctrl.allowEditing();
-                // });
             }
         }
     })
     .controller('asInputCtrl', function ($scope) {
 
         var vm = this;
-        vm.allowEditing = allowEditing;
-        console.log('controller');
+
 
        
     })

@@ -40,7 +40,8 @@ module.exports = function (grunt) {
                 }
             },
             html: {
-                files: clientConfig.htmlFiles,
+                files: _.concat(clientConfig.htmlFiles, clientConfig.htmlFramework),
+                tasks: ['ngtemplates'],
                 options: {
                     livereload: true
                 }
@@ -236,7 +237,7 @@ module.exports = function (grunt) {
 
 
 
-    grunt.registerTask('default', ['clean', 'jshint', 'wiredep','ngtemplates', 'injector', 'less', 'express', 'open', 'watch']);
+    grunt.registerTask('default', ['clean', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less', 'express', 'open', 'watch']);
     grunt.registerTask('test', ['clean', 'injector:js']);
     grunt.registerTask('build', ['clean', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less']);
     grunt.registerTask('test2', ['ngtemplates']);

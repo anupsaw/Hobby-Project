@@ -12,28 +12,23 @@ angular.module('as-ui')
                 model: '='
             },
             link: function (scope, element, attr) {
-                
-                // function activateSelect() {
-                //     //$(element).material_select('destroy');
-                //     $timeout(function () {
-                //         var select = element.find('select');
-                //         var options = select.find('option');
-                //         var selectOptions = scope.field.select;
-                //         if (selectOptions === undefined) {
-                //             $(select).material_select();
-                //         } else if (options.length > 1) {
-                //             $(select).material_select();
-                //         } else {
-                //             activateSelect();
-                //         }
-                //     });
 
-                // }
+                var select;
 
-                angular.element(element).ready(function () {
-                    $('select').material_select();
-                });
-                //activateSelect();
+                function activateSelect() {
+                    angular.element(element).ready(function () {
+                        
+                        select = element.find('select');
+
+                        $(select).on('change', function (event) {
+                            scope.model[scope.field.name] = select.val();
+                        });
+
+                        $(select).material_select();
+                    });
+                }
+
+                activateSelect();
 
             }
         }

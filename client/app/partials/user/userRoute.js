@@ -54,7 +54,7 @@
                 controllerAs: 'resetpasswordCtrl'
             })
             .state('user.securityquestions', {
-                url: '/securityquestions',
+                url: '/securityquestions/:id',
                 templateUrl: 'app/partials/user/securityquestions/securityquestions.html',
                 controller: 'securityquestionsCtrl',
                 controllerAs: 'securityquestionsCtrl'
