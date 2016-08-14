@@ -26,9 +26,9 @@ angular.module('as-ui')
                         Ctrl.isEdit = Ctrl.isEdit ? false : true;
                     });
 
-                    if (type === 0){
+                    if (type === 0) {
                         setFocus(element);
-                    }else if(type === 1){
+                    } else if (type === 1) {
                         updateSelect(element);
                     }
 
@@ -37,10 +37,7 @@ angular.module('as-ui')
                 function updateSelect(element) {
                     var select = element.find('select');
                     $(select).material_select('destroy');
-                   // $timeout(function () {
-                        $(select).material_select();
-                        //setFocus(element);
-                   // })
+                    $(select).material_select();
                 }
 
                 function setFocus(element) {

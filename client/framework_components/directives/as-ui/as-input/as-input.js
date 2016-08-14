@@ -29,7 +29,5 @@ angular.module('as-ui')
         vm.allowEditing = allowEditing;
         console.log('controller');
 
-        function allowEditing() {
-            vm.isEdit = vm.isEdit ? false : true;
-        }
+       
     })
