@@ -1,6 +1,6 @@
 
 var moduleName = 'user.profile.controller';
-var userDataModel = requireFile('app/partials/user/user.signup.model.js');
+var userDataModel = requireFile('app/partials/user/user.model.js');
 var errHandler = requireFile('app/error/errorHandler.js')(moduleName);
 var error = errHandler.customError;
 var errorType = errHandler.errorType;
@@ -14,7 +14,7 @@ module.exports = {
 
 function updateUser(req, res, next) {
     var id = req.params.id;
-    userDataModel.findOne({ _id: id })
+    userDataModel.findOne({ UserId: id })
         .then(processData)
         .then(sendResponse)
         .catch(function (err) {
@@ -57,7 +57,7 @@ function updateUser(req, res, next) {
 
 function getUserInfo(req, res, next) {
     var id = req.params.id;
-    userDataModel.findOne({ _id: id }, function (err, data) {
+    userDataModel.findOne({ UserId: id }, function (err, data) {
         if (err) return next(error(err));
 
         if (data) {

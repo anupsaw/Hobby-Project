@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('MovieApp')
-        .controller('signupCtrl', ['dataService', 'userModelData', function (dataService, userModelData) {
+        .controller('signupCtrl', function ($scope, $state, dataService, userModelData) {
 
             var vm = this;
             vm.page = 'user.signup';
@@ -11,13 +11,23 @@
 
             function RegisterUser() {
 
-                dataService.Post(vm.userModelData);
-                // dataService.Put('/user', vm.userModelData)
-                //dataService.Delete('/user', vm.userModelData)
-                // dataService.Get('/user', vm.userModelData)
-
+                SaveDate()
+                    .then(SendToLogin);
             }
 
-        }]);
+            function SaveDate() {
+                var res = dataService.Post(vm.userModelData);
+
+                return res;
+            }
+
+            function SendToLogin(res) {
+
+                $state.go('user.login');
+            }
+
+
+
+        });
 
 })();

@@ -7,6 +7,7 @@ var router = express.Router();
 var login = requireFile('app/partials/user/user.login.controller.js');
 var signup = requireFile('app/partials/user/user.signup.controller.js');
 var profile = requireFile('app/partials/user/user.profile.controller.js');
+var security = requireFile('app/partials/user/user.security.controller.js');
 
 
 //function useRouter() {
@@ -30,6 +31,10 @@ router.route('/signup')
 
 
 router.route('/profile/:id')
+    .get(profile.getUserInfo)
+    .put(profile.updateUser);
+
+router.route('/security/:id')
     .get(profile.getUserInfo)
     .put(profile.updateUser);
 

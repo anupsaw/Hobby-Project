@@ -1,6 +1,6 @@
 
 
-var moduleName = 'user.login.controller';
+var moduleName = 'user.security.controller';
 var userDataModel = requireFile('app/partials/user/user.model.js');
 var errHandler = requireFile('app/error/errorHandler.js')(moduleName);
 var error = errHandler.customError;
@@ -18,7 +18,7 @@ function authenticate(req, res, next) {
             next(error(errorType.emailIdNotExists));
         }
 
-        userDataModel.findOne({ 'EmailId': req.body.EmailId },'EmailId UserId FirstName LastName')
+        userDataModel.findOne({ 'EmailId': req.body.EmailId })
             .then(function (data) {
                 if (data) {
                     // if (data.Password === req.body.Password) res.send(data);  //password not authenticated 

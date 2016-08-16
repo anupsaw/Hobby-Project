@@ -1,4 +1,3 @@
-'use strict';
 
 // module.exports = dataObject;
 
@@ -10,3 +9,4 @@
 //     this.timeStamp = Date.now();
 
 // }
+

@@ -18,7 +18,7 @@
             function LoginUser(data) {
 
                 if (data) {
-                    $state.go('user.profile', { id: data._id });
+                    $state.go('user.profile', { id: data.UserId });
                 } else {
                     alert(data.data);
                 }
