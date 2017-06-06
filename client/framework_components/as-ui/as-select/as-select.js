@@ -2,14 +2,15 @@ angular.module('as-ui')
     .directive('asSelect', function ($timeout) {
 
         return {
-            templateUrl: 'framework_components/directives/as-ui/as-select/as-select.tpl.html',
+            templateUrl: 'as-ui/as-select/as-select.tpl.html',
             restrict: 'E',
             replace: true,
             controller: 'asSelectCtrl',
             controllerAs: 'asSelectCtrl',
             scope: {
                 field: '=',
-                model: '='
+                model: '=',
+                size:'='
             },
             link: function (scope, element, attr) {
 

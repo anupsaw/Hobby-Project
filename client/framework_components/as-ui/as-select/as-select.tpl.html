@@ -1,0 +1,17 @@
+<div class="col s12 m12">
+  <div class="input-field as-edit-field" ng-if="field.config.editable">
+    <a href="" class='prefix active' ng-if="!" ng-class="{'as-edit':!asSelectCtrl.isEdit, 'as-undo':asSelectCtrl.isEdit}"></a>   
+    <select ng-options="option.code as option.value for option in field.select.options track by option.code" ng-disabled='(field.config.disabled || field.config.editable) && !asSelectCtrl.isEdit'
+      id={{::field.attr.key}} ng-model='model[field.name]' ng-required='field.config.required'>
+      <option value="" disabled selected>Choose your option</option>
+    </select>
+    <label for={{::field.attr.key}}>{{::field.attr.label}}</label>
+  </div>
+  <div class="input-field" ng-if="!field.config.editable">
+    <select ng-disabled='field.config.disabled ' id={{::field.attr.key}} ng-options="option.code as option.value for option in field.select.options track by option.code"
+      ng-model='model[field.name]' ng-required='field.config.required'>
+      <option value="" disabled selected>Choose your option</option>
+    </select>
+    <label for={{::field.attr.key}}>{{::field.attr.label}}</label>
+  </div>
+</div>

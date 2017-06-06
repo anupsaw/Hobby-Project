@@ -7,12 +7,12 @@ module.exports = function (grunt) {
     var clientConfig = {
         jsAllFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js'],
         jsFile: ['./client/index.js', './client/app/*.js', './client/app/**/*.js', '!./client/app/**/*-spec.js', '!./client/app/index-spec.js'],
-        jsFramework: ['./client/framework_components/*.js', './client/framework_components/**/*.js', '!./client/*/template.js', '!./client/**/template.js'],
+        jsFramework: ['./client/framework_components/*.js', './client/framework_components/**/*.js', '!./client/framework_components/template.js'],
         jsSpecFile: ['./client/app/**/*-spec.js', './client/app/index-spec.js'],
-        lessFile: ['./client/app/*.less', './client/app/**/*.less'],
+        lessFile: ['./client/less/*.less', './client/app/*.less', './client/app/**/*.less'],
         htmlFiles: ['./client/index.html', './client/app/*.html', './client/app/**/*.html'],
-        htmlFramework: ['framework_components/*.tpl.html', 'framework_components/**/*.tpl.html'],
-        jsTemplate: ['./client/*/template.js', './client/**/template.js']
+        htmlFramework: ['*.tpl.html', '**/*.tpl.html'],
+        jsTemplate: ['./client/framework_components/template.js', './client/app/template.js']
     }
 
 
@@ -151,12 +151,12 @@ module.exports = function (grunt) {
         less: {
             vendor: {
                 files: {
-                    'client/build/vendor.css': 'client/index.less'
+                    'client/build/css/vendor.css': 'client/index.less'
                 }
             },
             app: {
                 files: {
-                    'client/build/app.css': 'client/less/as-app.less'
+                    'client/build/css/app.css': 'client/less/as-app.less'
                 }
             }
         },
@@ -177,7 +177,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    'client/less/as-app.less': clientConfig.lessFile
+                    'client/less/as-app.less': _.concat(clientConfig.lessFile,['!./client/less/*.less'])
                 }
             },
             frameworkJs: {
@@ -186,8 +186,9 @@ module.exports = function (grunt) {
                     endtag: '<!-- endinjector -->',
                     sort: function (a, b) {
                         return b.localeCompare(a);
-                    }
+                    },
                 },
+
                 files: {
                     'client/index.html': clientConfig.jsFramework
                 }
@@ -195,10 +196,10 @@ module.exports = function (grunt) {
             templateJs: {
                 options: {
                     starttag: '<!-- injectTemplate:{{ext}} -->',
-                    endtag: '<!-- endinjector -->',
-                    sort: function (a, b) {
-                        return b.localeCompare(a);
-                    }
+                    endtag: '<!-- endinjector -->'
+                },
+                sort: function (a, b) {
+                    return a.localeCompare(b);
                 },
                 files: {
                     'client/index.html': clientConfig.jsTemplate
@@ -213,10 +214,10 @@ module.exports = function (grunt) {
         },
 
         ngtemplates: {
-            app: {
+            framework: {
                 src: clientConfig.htmlFramework,
                 dest: 'client/framework_components/template.js',
-                cwd: './client',
+                cwd: './client/framework_components',
                 options: {
                     module: 'as-ui',
                     htmlmin: {
@@ -232,15 +233,26 @@ module.exports = function (grunt) {
                 }
             }
 
-        }
+        },
+
+        copy: {
+            fonts: {
+                expand: true,
+                cwd: './client/bower_components/font-awesome/fonts/',
+                src: '*',
+                dest: './client/build/fonts/'
+            }
+        },
     });
 
 
 
-    grunt.registerTask('default', ['clean', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less', 'express', 'open', 'watch']);
-    grunt.registerTask('test', ['clean', 'injector:js']);
+    grunt.registerTask('default', ['clean', 'copy', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less', 'express', 'open', 'watch']);
+    grunt.registerTask('inject', ['injector']);
     grunt.registerTask('build', ['clean', 'jshint', 'wiredep', 'ngtemplates', 'injector', 'less']);
     grunt.registerTask('test2', ['ngtemplates']);
+    grunt.registerTask('copytest', ['copy']);
+
 
     //grunt.registerTask('server', ['jshint']);
 

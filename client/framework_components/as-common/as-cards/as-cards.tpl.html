@@ -1,0 +1,10 @@
+<div class="col s12" ng-class="{'m6': formType =='0', 'm12': (formType =='1' || formType =='2')}">
+    <div class="card">
+        <div class="card-content black-text">
+            <div class="card-title">
+                <span>{{formTitle}}</span>
+            </div>
+                <ng-transclude></ng-transclude>
+        </div>
+    </div>
+</div>

@@ -6,73 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=2, maximum-scale=2,user-scalable=yes">
     <meta name="author" content="Anup Saw">
     <!-- <meta http-equiv="refresh" content="10"> -->
-    <!--for refresh-->
-    <title>my app</title>
+    <!--for refresh--->
+    <title>e-Locker</title>
 </head>
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- bower:css -->
 <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
 <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.css" />
 <!-- endbower -->
-<link href="build\app.css" rel="stylesheet" />
+<link href="build\css\app.css" rel="stylesheet" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
+<script src="//localhost:35729/livereload.js"></script>
 <!--
 Naming convention 
 
-Element ID: should Camel Case, example id="carBody" 
+Element ID: should Camel Case, example id="asBody" 
 CSS Class: should in small letter separated with hyphen, example class='as-body' 
 -->
 
-<body id="asBody" class='as-body'>
-    <header>
-        <nav>
-            <div class="nav-wrapper">
-                <div class='container'>
-                    <a href="#!" ui-sref='home' class="brand-logo">My App</a>
-                    <a href="#" ui-sref='home' data-activates="as-side-nav" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href='#' class="waves-effect waves-black btn-flat as-btn-blank" ui-sref='user.signup'>Sign up</a></li>
-                        <li><a href='#' class="waves-effect waves-white btn as-btn-red" ui-sref='user.login'>Log in</a></li>
-                    </ul>
-                    <ul class="side-nav" id="as-side-nav">
-                        <li style="height:40px; background-color:#ee6e73;"><a href="#!" class="brand-logo">My App</a></li>
-                        <li><a href='#' class='as-user' ui-sref='user.login'>Log in</a></li>
-                        <li><a href='#' class='as-user' ui-sref='user.signup'>Sign up</i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div id='mainContent' class='container'>
-        <div>
-            <ui-view></ui-view>
-        </div>
-    </div>
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">Footer Content</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Links</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2016 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-        </div>
-    </footer>
+<body id="asBody" class='as-body' as-container>
+   
 
 
     <!-- bower:js -->
@@ -86,26 +38,22 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
     <script src="bower_components/materialize/dist/js/materialize.js"></script>
     <!-- endbower -->
 
-
-
-
-    <!--main app js file-->
-    <!--<script src="index.js"></script>-->
-
-    <!-- include: "type": "js", "files": "client/index.js" -->
-
-    <!-- /include -->
- <!-- injectFrameWork:js -->
- <script src="/framework_components/MaterializeCss/InitCss.js"></script>
- <script src="/framework_components/directives/as-ui/as-ui.js"></script>
- <script src="/framework_components/directives/as-ui/as-select/as-select.js"></script>
- <script src="/framework_components/directives/as-ui/as-select/as-select-spec.js"></script>
- <script src="/framework_components/directives/as-ui/as-input/as-input.js"></script>
- <script src="/framework_components/directives/as-ui/as-input/as-input-spec.js"></script>
- <script src="/framework_components/directives/as-ui/as-editable-field.js"></script>
- <script src="/framework_components/directives/as-ui-form/dataService.js"></script>
- <script src="/framework_components/directives/as-ui-form/as-form.js"></script>
- <!-- endinjector -->
+    <!-- injectFrameWork:js -->
+    <script src="/framework_components/as-ui/as-ui.js"></script>
+    <script src="/framework_components/as-ui/as-select/as-select.js"></script>
+    <script src="/framework_components/as-ui/as-select/as-select-spec.js"></script>
+    <script src="/framework_components/as-ui/as-input/as-input.js"></script>
+    <script src="/framework_components/as-ui/as-input/as-input-spec.js"></script>
+    <script src="/framework_components/as-ui/as-form/as-form.js"></script>
+    <script src="/framework_components/as-ui/as-editable-field.js"></script>
+    <script src="/framework_components/as-init-css/as-init-css.js"></script>
+    <script src="/framework_components/as-container/asContainer.js"></script>
+    <script src="/framework_components/as-config-ui/as-config-ui.js"></script>
+    <script src="/framework_components/as-config-ui/as-config-ui-spec.js"></script>
+    <script src="/framework_components/as-common/as-container/asContainer.js"></script>
+    <script src="/framework_components/as-common/as-container/asContainer-spec.js"></script>
+    <script src="/framework_components/as-common/as-cards/as-cards.js"></script>
+    <!-- endinjector -->
 
     <!-- injector:js -->
     <script src="/index.js"></script>
@@ -113,6 +61,11 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
     <script src="/app/directives/CSSInit/materializeInit.js"></script>
     <script src="/app/directives/emailStatus.js"></script>
     <script src="/app/directives/notification.js"></script>
+    <script src="/app/partials/admin/addschema/addschemaCtrl.js"></script>
+    <script src="/app/partials/admin/adminCtrl.js"></script>
+    <script src="/app/partials/admin/adminRoute.js"></script>
+    <script src="/app/partials/admin/editschema/editschemaCtrl.js"></script>
+    <script src="/app/partials/admin/home/homeCtrl.js"></script>
     <script src="/app/partials/home/homeCtrl.js"></script>
     <script src="/app/partials/home/homeRoute.js"></script>
     <script src="/app/partials/user/login/loginCtrl.js"></script>
@@ -125,10 +78,10 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
     <script src="/app/services/dataService/dataService.js"></script>
     <!-- endinjector -->
 
-<!-- injectTemplate:js -->
-<script src="/framework_components/template.js"></script>
-<!-- endinjector -->
-<script>
+    <!-- injectTemplate:js -->
+    <script src="/framework_components/template.js"></script>
+    <!-- endinjector -->
+    <script>
     // $( document ).ready(function(){
     //     $(".button-collapse").sideNav();
     // });
@@ -137,7 +90,7 @@ CSS Class: should in small letter separated with hyphen, example class='as-body'
 //   });
     </script>
 
-    <script src="//localhost:35729/livereload.js"></script>
+    
 </body>
 
 </html>

@@ -1,0 +1,10 @@
+<div class="col m12 s12">
+    <div class="input-field">
+        <a href="" class='prefix active as-edit-config' ng-click="uiConfigCtrl.showuiConfigCtrl()"></a>
+        <a href="" class='prefix active as-undo-config' ng-click="uiConfigCtrl.showuiConfigCtrl()"></a>
+        <a href="" class='prefix active as-delete-config' ng-click="uiConfigCtrl.showuiConfigCtrl()"></a>
+        <a href="" class='prefix active as-save-config' ng-click="uiConfigCtrl.showuiConfigCtrl()"></a>
+        <input type="{{::uiConfigCtrl.fields.attr.type}}" disabled='disabled' id={{::uiConfigCtrl.fields.attr.key}}/>
+        <label for={{::uiConfigCtrl.fields.attr.key}}>{{::field.fields.attr.label}}</label>
+    </div>
+</div>

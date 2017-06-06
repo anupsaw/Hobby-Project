@@ -12,7 +12,7 @@ angular.module('as-ui')
                         Ctrl = item;
                         type = index;
                     }
-                })
+                });
 
                 $(element).on('click', 'a.as-edit', function () {
                     allowEditing(Ctrl, element)

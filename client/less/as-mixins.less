@@ -1,11 +1,14 @@
 .as-icon(@content,@size:22px,@color:red){
    color:@color;
     font-weight:500;
+    font-family: "Roboto", sans-serif;
     &:before{
     .fa-icon();
     content: @content;
     font-size:@size;
     padding-left:10px;
+    padding-right:7px;
+    vertical-align: middle;
     }
 
 }

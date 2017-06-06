@@ -37,3 +37,6 @@ Remove-Item $zipFile -recurse -force
 & $mongoDBPath\bin\mongod.exe --config $mongoDbConfigPath --install
 
 & net start mongodb
+
+
+mongod --port 27017 --dbpath C:\mongodb\db

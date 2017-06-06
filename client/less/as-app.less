@@ -2,8 +2,13 @@
 @import "as-variable.less";
 @import "as-mixins.less";
 @import "as-override-materilize.less";
+@import "as-icon.less";
 
 /** injector:less */
+@import "/../app/partials/admin/addschema/addschema.less";
+@import "/../app/partials/admin/admin.less";
+@import "/../app/partials/admin/editschema/editschema.less";
+@import "/../app/partials/admin/home/home.less";
 @import "/../app/partials/home/home.less";
 @import "/../app/partials/user/login/login.less";
 @import "/../app/partials/user/profile/profile.less";
@@ -13,6 +18,17 @@
 @import "/../app/partials/user/user.less";
 /** endinjector */
 
+
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
 html{
     line-height: 1.5;
         font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif !important;
@@ -20,11 +36,6 @@ html{
     color: rgba(0,0,0,0.87);
     background-color: @as-html-color;
 }
-
-body{
-        font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif !important;
-}
-
 
 .required-error, .required-error:focus{
     border-left:5px solid red;
@@ -42,13 +53,6 @@ body{
  font-size: 22px;
 }
 
-.as-edit {
-   .as-icon(@fa-var-pencil, 25px);  
-}
-
-.as-undo{
-  .as-icon(@fa-var-undo, 25px);  
-}
 
 input[type=text]:disabled{
     font-weight: 600;
@@ -60,6 +64,14 @@ input[type=email]:disabled{
 
 .bold{
     font-weight: bold;
+}
+
+#mainContent{
+    margin-top: 20px;
+}    
+
+.as-brand-logo-small{
+    color:white;
 }
 
 

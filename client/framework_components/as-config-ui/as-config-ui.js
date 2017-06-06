@@ -1,45 +1,110 @@
+/*
+
+card Type : 0 - splited type like mobile view
+            1 - single page with one element in single row.
+            2 - single page with two element in one row.
+
+
+ */
+
+
+
 (function () {
     'use strict';
 
-    angular.module('as-ui', []);
+
     angular.module('as-ui')
-        .directive('asForm', function ($parse, $compile, dataService) {
+        .directive('asConfigUi', function ($parse, $compile, dataService) {
             return {
-                template: '<form name ={{name}}></form>',
+                template: '<div name ={{name}}></div>',
                 restrict: 'E',
-                controller: 'formCtrl',
-                controllerAs: 'formCtrl',
+                controller: 'uiConfigCtrl',
+                controllerAs: 'uiConfigCtrl',
                 bindToController: true,
                 replace: true,
                 scope: {
                     page: '@',
                     name: '@',
-                    formData: '=',
+                    formConfig: '=',
                     target: '@',
-                    actions: '='
+                    actions: '=',
+                    cardSize: '=?',
+                    formTitle: '@?',
+                    formType: '@?'
                 },
                 link: function (scope, element, attr, ctrl) {
 
-                    scope.getTemplateUrl = getTemplateUrl;
-                    function getTemplateUrl() {
-                        var div = $('<div>')
-                        scope.elements.forEach(function (item, index, self) {
-                            ctrl.fields[item.name] = item;
-                            div.append('<as-' + item.type + '  field="formCtrl.fields.' + item.name + '" model="model"></as-' + item.type + '>');
-                        });
-                        var btns = '<ng-include src="' + "'framework_components/directives/as-ui/as-buttons/as-buttons.tpl.html'" + '"></ng-include>'
-                        div.append(btns);
-                        $compile(div)(scope);
-                        $(element).append(div);
+
+
+                    function getTemplate(type) {
+                        if (type === 'input') {
+                            return "'as-config-ui/views/as-input-config.tpl.html'";
+                        } else if (type === 'select') {
+                            return "'as-config-ui/views/as-select-config.tpl.html'";
+                        }
+
                     }
-                    getTemplateUrl();
+
+
+                    function getTemplateType1() {
+                        var len = scope.elements.length;
+                        var size = ctrl.cardSize || 5;
+                        var title = ctrl.formTitle;
+                        var jlen = len % size ? (len + (size - (len % size))) / size : len / size;
+                        for (var j = 0; j < jlen; j++) {
+                            var asCards = $('<as-cards form-type="uiConfigCtrl.formType" >');
+                            if (j === 0) asCards.attr('form-title', "uiConfigCtrl.formTitle");
+                            var ilen = len - (size * j) > size ? size + (size * j) : len;
+                            for (var i = size * j; i < ilen; i++) {
+                                var item = scope.elements[i];
+                                ctrl.fields[item.name] = item;
+                                var div =  $('<div class="row">').attr('ng-include',getTemplate(item.type));
+                                asCards.append(div);
+                            }
+                            $compile(asCards)(scope);
+                            $(element).append(asCards);
+
+                        }
+                    }
+
+
+                    function getTemplateType2() {
+                        var asCards = $('<as-cards form-type="uiConfigCtrl.formType">')
+                        asCards.attr('form-title', "uiConfigCtrl.formTitle");
+                        var len = scope.elements.length;
+                        for (var j = 0; j < len; j++) {
+                            var childDiv;
+                            var div = $('<div class="row">');
+
+                            for (var i = 0; (i <= 1 && (j + i) < len); i++) {
+                                var item = scope.elements[j + i];
+                                ctrl.fields[item.name] = item;
+                                childDiv = $('<div class="col s12 m6">');
+                                childDiv.append('<as-' + item.type + '  field="uiConfigCtrl.fields.' + item.name + '" model="model" size="uiConfigCtrl.size"></as-' + item.type + '>');
+                                div.append(childDiv);
+                                j = j + i;
+                            }
+
+                            asCards.append(div);
+                        }
+                        //$compile(asCards)(scope);
+                        $(element).append(asCards);
+
+                    }
+
+                    if (ctrl.formType === '0' || ctrl.formType === '1') {
+                        getTemplateType1()
+                    } else if (ctrl.formType === '2') {
+                        getTemplateType2()
+                    }
 
                 }
             };
         })
-        .controller('formCtrl', function ($scope, $compile, $templateCache, dataService) {
+        .controller('uiConfigCtrl', function ($scope, $compile, $templateCache, dataService) {
 
             var vm = this;
+            vm.cardType = vm.cardType || '0';
             vm.fields = {};
             var model = {};
             var _model = {}
@@ -124,7 +189,7 @@
             ]
 
 
-            $scope.elements = vm.formData || elements;
+            $scope.elements = vm.formConfig || elements;
             vm.save = save;
 
 

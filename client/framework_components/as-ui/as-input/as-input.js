@@ -2,13 +2,14 @@ angular.module('as-ui')
     .directive('asInput', function () {
 
         return {
-            templateUrl: 'framework_components/directives/as-ui/as-input/as-input.tpl.html',
+            templateUrl: 'as-ui/as-input/as-input.tpl.html',
             restrict: 'E',
             controller: 'asInputCtrl',
             controllerAs: 'asInputCtrl',
             scope: {
                 field: '=',
-                model: '='
+                model: '=',
+                size:'='
             },
             link: function (scope, element, attr, ctrl) {
 

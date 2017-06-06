@@ -1,0 +1,14 @@
+<div>
+  <nav style='background:grey'>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="" ui-sref="admin.home" ng-click="adminCtrl.nextPage =null" class="breadcrumb as-brand-logo-small" style='margin-left:20px; color:white;'>Admin Dashbord</a>
+        <a href="" ng-if="adminCtrl.nextPage" class="breadcrumb as-forword as-brand-logo-small">{{adminCtrl.nextPage}}</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="" ui-sref="admin.home" class='as-setting'>Settings</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <ui-view></ui-view>
+</div>
